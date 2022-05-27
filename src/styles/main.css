@@ -1,5 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* 自定义字体 */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap');
+
+
+
+
+
+
 
 /* css 变量 */
 :root {
@@ -70,3 +79,5 @@ input, textarea {
   font-size: 14px;
   margin: 16px 0;
 }
+
+

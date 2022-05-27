@@ -7,10 +7,12 @@ const { user } = getUser()
 
 const useStorage = () => {
     const error = ref(null)
-    let url = ref(null)
+    const url = ref(null)
     const filePath = ref(null)
+    const isPending = ref(false)
 
     const uploadImage = async (file) => {
+        isPending.value = true
         filePath.value = `covers/${user.value.uid}/${file.name}`
         const storageRef = fireRef(storage, filePath.value);
         try {
@@ -20,11 +22,12 @@ const useStorage = () => {
                     console.log('Uploaded file!')
                 })
             url = await getDownloadURL(storageRef)
-                        .then(url => { 
-                                return url
-                        })
-
-            return url         
+                .then(url => {
+                    return url
+                })
+            error.value = null
+            isPending.value = false
+            return url
         } catch (err) {
             console.log(err.message)
             error.value = err
@@ -32,10 +35,13 @@ const useStorage = () => {
     }
 
     const deleteImage = async (path) => {
+        isPending.value = true
         const storageRef = ref(storage);
 
         try {
             await storageRef.delete()
+            error.value = null
+            isPending.value = false
         } catch (err) {
             console.log(err.message)
             error.value = err.message
@@ -44,7 +50,7 @@ const useStorage = () => {
 
 
 
-    return {  url, filePath, error, uploadImage, deleteImage }
+    return { url, filePath, error, uploadImage, deleteImage, isPending }
 }
 
 export default useStorage

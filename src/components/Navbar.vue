@@ -1,7 +1,14 @@
 <template>
   <div class="navbar">
-    <nav>
-      <img src="@/assets/20220415_212741.jpg" />
+    <nav class="flex justify-around">
+      
+      <div class="avatar">
+        <div class="h-20 w-20 rounded-full overflow-hidden">
+          <img src="@/assets/20220415_212741.jpg" />
+        </div>
+      </div>
+
+
       <h1>
         <router-link :to="{ name: 'Home' }">Music-Posts</router-link>
       </h1>
@@ -50,12 +57,11 @@ const handleClick = async () => {
 nav {
   display: flex;
   align-items: center;
-  max-width: 1200px;
   margin: 0 auto;
 }
 
 nav img {
-  max-height: 60px;
+  /* max-height: 60px; */
 }
 
 nav h1 {
