@@ -1,10 +1,18 @@
 <template>
-  <div class="home">
-    <!-- <Navbar /> -->
-    <h1 class="text-blue-600 text-3xl flex justify-center">this is home page</h1>
-    <div v-if="error" class="error">Could not fetch the data</div>
-    <div v-if="documents">
-      <ListView :playlists="documents" />
+  <div class="hero relative top-40 ">
+    <div class="hero-content  flex flex-row justify-center gap-10">
+      <div>
+        <img src="https://i02piccdn.sogoucdn.com/60a8528451475473"
+          class="w-50  h-50 rounded-full shadow-2xl object-contain" />
+      </div>
+      <div class="flex flex-col">
+        <h1 class="text-5xl font-bold">Music-Posts</h1>
+        <p class="py-6  w-60">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
+          exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+
+        <button class="btn btn-primary" @click="handleClick">Get Started</button>
+      </div>
+
     </div>
   </div>
 </template>
@@ -13,6 +21,13 @@
 import Navbar from "components/Navbar.vue";
 import ListView from 'components/ListView.vue'
 import getCollection from 'composables/getCollection'
+import { useRouter } from "vue-router";
+
+const router = useRouter()
+
+const handleClick = () => {
+  router.push({ name: 'UserPlaylists' })
+}
 
 const { error, documents } = getCollection('playlists')
 </script>
