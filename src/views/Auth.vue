@@ -1,5 +1,4 @@
 <template>
-
   <div class="container">
     <div class="left img"></div>
     <div class="right form">
@@ -33,7 +32,7 @@ body {
 .left {
   width: 800px;
   height: 550px;
-  background-image: url("assets/201515-158211451517f1.jpg");
+  background-image: url("@/assets/201515-158211451517f1.jpg");
   /* 让图片适应大小 */
   background-size: cover;
 }

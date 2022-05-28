@@ -18,9 +18,6 @@
 </template>
 
 <script setup>
-import Navbar from "components/Navbar.vue";
-import ListView from 'components/ListView.vue'
-import getCollection from 'composables/getCollection'
 import { useRouter } from "vue-router";
 
 const router = useRouter()
@@ -28,8 +25,6 @@ const router = useRouter()
 const handleClick = () => {
   router.push({ name: 'Auth' })
 }
-
-const { error, documents } = getCollection('playlists')
 </script>
 
 <style>

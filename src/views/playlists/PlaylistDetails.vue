@@ -1,30 +1,70 @@
 <template>
   <div v-if="error" class="error">{{ error }}</div>
-  <div v-if="playlist" class="playlist-details">
 
-    <!-- playlist information -->
-    <div class="playlist-info">
-      <div class="cover">
-        <img :src="playlist.coverUrl">
+  <div v-if="playlist" class="shell ">
+
+    <div class="playlist-info flex flex-col items-center">
+      <div class="hero min-h-full bg-base-200">
+        <div class="hero-content flex flex-col p-10">
+          <!-- 用一个容器来占位,防止页面抖动 -->
+          <div class="w-72 h-80">
+            <img :src="playlist.coverUrl" class=" rounded-xl shadow-2xl " />
+          </div>
+          <div>
+            <h1 class="text-5xl font-bold">{{ playlist.title }}</h1>
+            <p class="py-6">{{ playlist.description }}</p>
+            <button class="btn-primary" v-if="ownership" @click="handleDelete">Delete Playlist</button>
+          </div>
+        </div>
       </div>
-      <h2>{{ playlist.title }}</h2>
-      <p class="username">Created by {{ playlist.userName }}</p>
-      <p class="description">{{ playlist.description }}</p>
-      <button v-if="ownership" @click="handleDelete">Delete Playlist</button>
     </div>
 
-    <!-- song list -->
     <div class="song-list">
-      <div v-if="!playlist.songs.length">No songs have been added to playlist yet</div>
-      <div v-for="song in playlist.songs" class="single-song" :key="song.id">
-        <div class="details">
-          <h3>{{ song.title }}</h3>
-          <p>{{ song.artist }}</p>
+      <div v-if="!playlist.songs.length">歌单为空</div>
+      <div v-else class="w-full">
+        <div class="overflow-x-auto">
+          <table class="table w-full">
+            <!-- head -->
+            <thead>
+              <tr>
+                <th></th>
+                <th>歌名</th>
+                <th>歌手</th>
+                <th>是否收藏</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- row 1 -->
+              <!-- <div v-for="song in playlist.songs" class="single-song " :key="song.id">
+              <tr class="hover">
+                <th>1</th>
+                <td>{{ song.title }}</td>
+                <td>{{ song.artist }}</td>
+                <td v-if="ownership" @click="handleClick(song.id)">delete</td>
+              </tr>
+            </div> -->
+              <!-- row 2 -->
+              <tr class="hover">
+                <th>2</th>
+                <td>Hart Hagerty</td>
+                <td>Desktop Support Technician</td>
+                <td>Purple</td>
+              </tr>
+              <!-- row 3 -->
+              <tr class="hover">
+                <th>3</th>
+                <td>Brice Swyre</td>
+                <td>Tax Accountant</td>
+                <td>Red</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <button v-if="ownership" @click="handleClick(song.id)">delete</button>
       </div>
+
       <AddSong v-if="ownership" :playlist="playlist" />
     </div>
+
   </div>
 </template>
 
@@ -77,11 +117,32 @@ const handleClick = async (id) => {
 
 </script>
 
-<style>
-.playlist-details {
+<style scoped>
+.shell {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 0fr;
+  gap: 0px 3rem;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "playlist-info song-list song-list"
+    "playlist-info song-list song-list"
+    /* ". . ."; */
+}
+
+.playlist-info {
+  grid-area: playlist-info;
+}
+
+.song-list {
+  grid-area: song-list;
+}
+
+/* .playlist-details {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 80px;
+  
 }
 
 .cover {
@@ -131,5 +192,5 @@ const handleClick = async (id) => {
   align-items: center;
   border-bottom: 1px dashed var(--secondary);
   margin-bottom: 20px;
-}
+} */
 </style>

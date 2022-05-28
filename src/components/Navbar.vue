@@ -1,10 +1,10 @@
 <template>
   <div class="navbar">
-    <nav class="flex justify-around">
+    <nav class="flex justify-between">
       
       <div class="avatar">
         <div class="h-20 w-20 rounded-full overflow-hidden">
-          <img src="assets/20220415_212741.jpg" />
+          <img src="@\assets\20220415_212741.jpg" />
         </div>
       </div>
 
@@ -50,14 +50,17 @@ const handleClick = async () => {
 <style scoped>
 .navbar {
   padding: 16px 10px;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
   background: white;
+  width: 100vw;
 }
 
 nav {
   display: flex;
   align-items: center;
   margin: 0 auto;
+  padding:  0 2rem;
+  gap: 1rem;
 }
 
 nav img {

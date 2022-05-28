@@ -7,8 +7,7 @@ import PlaylistDetails from 'views/playlists/PlaylistDetails.vue'
 import UserPlaylists from 'views/playlists/UserPlaylists.vue'
 import Auth from 'views/Auth.vue'
 import PlayLists from 'views/PlayLists.vue'
-// route guard
-import { auth } from '../firebase/config'
+import { auth } from '@/firebase/config'
 
 const requireAuth = (to, from, next) => {
   let user = auth.currentUser
@@ -25,33 +24,6 @@ const routes = [
     name: 'Home',
     component: Home,
     beforeEnter: requireAuth
-  },
-  {
-    path: '/playlists',
-    name: 'PlayLists',
-    component: PlayLists,
-    beforeEnter: requireAuth,
-    children: [
-      {
-        path: '/create',
-        name: 'CreatePlaylist',
-        component: CreatePlaylist,
-        beforeEnter: requireAuth
-      },
-      {
-        path: '/:id',
-        name: 'PlaylistDetails',
-        component: PlaylistDetails,
-        beforeEnter: requireAuth,
-        props: true
-      },
-      {
-        path: '/user',
-        name: 'UserPlaylists',
-        component: UserPlaylists,
-        beforeEnter: requireAuth
-      },
-    ]
   },
   {
     path: '/auth',
@@ -74,6 +46,36 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/playlists',
+    name: 'PlayLists',
+    component: PlayLists,
+    beforeEnter: requireAuth,
+    redirect: { name: 'UserPlaylists' },
+    children: [ 
+      //子路由create 如果携程/create ,则代表到根路径的create ,而不是/playlists/create
+      {
+        path: 'create',
+        name: 'CreatePlaylist',
+        component: CreatePlaylist,
+        beforeEnter: requireAuth
+      },
+      {
+        path: ':id',
+        name: 'PlaylistDetails',
+        component: PlaylistDetails,
+        beforeEnter: requireAuth,
+        props: true
+      },
+      {
+        path: 'user',
+        name: 'UserPlaylists',
+        component: UserPlaylists,
+        beforeEnter: requireAuth
+      },
+    ]
+  },
+
 ]
 
 const router = createRouter({

@@ -1,14 +1,14 @@
 <template>
     <form @submit.prevent="handleSubmit">
         <h1>Login</h1>
-        <input type="email" class="e" placeholder="Email" v-model="email">
-        <input type="password" class="e" placeholder="Password" v-model="password">
+        <input type="email"  placeholder="Email" v-model="email">
+        <input type="password"  placeholder="Password" v-model="password">
         <div class="flex justify-between">
             <a @click="handleSignup" class="cursor-pointer">Signup</a>
             <a class="cursor-pointer">Forget the passrword?</a>
         </div>
         <div v-if="error" class="error">{{ error }}</div>
-        <button class="g" v-if="!isPending">Log in</button>
+        <button  v-if="!isPending">Log in</button>
         <button v-if="isPending" disabled>Loading</button>
     </form>
 </template>

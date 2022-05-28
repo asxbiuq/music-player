@@ -13,6 +13,7 @@
         </div>
       </div>
     </router-link>
+    
 </template>
 
 <script setup>
@@ -21,7 +22,7 @@ import { defineProps } from 'vue'
 const props = defineProps(['playlist'])
 </script>
 
-<style scoped>
+<style >
 
 .single:hover {
   box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.05);
