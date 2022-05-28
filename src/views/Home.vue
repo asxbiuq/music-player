@@ -2,8 +2,8 @@
   <div class="hero relative top-40 ">
     <div class="hero-content  flex flex-row justify-center gap-10">
       <div>
-        <img src="https://i02piccdn.sogoucdn.com/60a8528451475473"
-          class="w-50  h-50 rounded-full shadow-2xl object-contain" />
+        <img src="src\assets\60a8528451475473.jfif"
+          class="record w-50  h-50 rounded-full  object-contain animate-spin " />
       </div>
       <div class="flex flex-col">
         <h1 class="text-5xl font-bold">Music-Posts</h1>
@@ -31,3 +31,7 @@ const handleClick = () => {
 
 const { error, documents } = getCollection('playlists')
 </script>
+
+<style>
+
+</style>
