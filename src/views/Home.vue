@@ -2,7 +2,7 @@
   <div class="hero relative top-40 ">
     <div class="hero-content  flex flex-row justify-center gap-10">
       <div>
-        <img src="src\assets\60a8528451475473.jfif"
+        <img src="src/assets/60a8528451475473.jfif"
           class="record w-50  h-50 rounded-full  object-contain animate-spin " />
       </div>
       <div class="flex flex-col">
@@ -26,7 +26,7 @@ import { useRouter } from "vue-router";
 const router = useRouter()
 
 const handleClick = () => {
-  router.push({ name: 'UserPlaylists' })
+  router.push({ name: 'Auth' })
 }
 
 const { error, documents } = getCollection('playlists')

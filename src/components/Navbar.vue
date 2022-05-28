@@ -4,7 +4,7 @@
       
       <div class="avatar">
         <div class="h-20 w-20 rounded-full overflow-hidden">
-          <img src="@/assets/20220415_212741.jpg" />
+          <img src="assets/20220415_212741.jpg" />
         </div>
       </div>
 

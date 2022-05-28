@@ -7,7 +7,7 @@ const { user } = getUser()
 
 const useStorage = () => {
     const error = ref(null)
-    const url = ref(null)
+    let url = ref(null)
     const filePath = ref(null)
     const isPending = ref(false)
 

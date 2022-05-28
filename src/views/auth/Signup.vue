@@ -1,9 +1,12 @@
 <template>
     <form @submit.prevent="handleSubmit">
-        <h2>Signup</h2>
+        <h1>Signup</h1>
         <input type="text" placeholder="Display name" v-model="displayName">
         <input type="email" placeholder="Email" v-model="email">
         <input type="password" placeholder="Password" v-model="password">
+        <div class="flex justify-between">
+            <a @click="handleLogin" class="cursor-pointer">Login</a>
+        </div>
         <div v-if="error" class="error">{{ error }}</div>
         <button v-if="!isPending">Sign up</button>
         <button v-if="isPending" disabled>Loading</button>
@@ -30,7 +33,9 @@ const handleSubmit = async () => {
     }
 }
 
-
+const handleLogin = () => {
+    router.push({ name: 'Login' })
+}
 </script>
 
 <style>

@@ -1,10 +1,14 @@
 <template>
     <form @submit.prevent="handleSubmit">
-        <h2>Login</h2>
-        <input type="email" placeholder="Email" v-model="email">
-        <input type="password" placeholder="Password" v-model="password">
+        <h1>Login</h1>
+        <input type="email" class="e" placeholder="Email" v-model="email">
+        <input type="password" class="e" placeholder="Password" v-model="password">
+        <div class="flex justify-between">
+            <a @click="handleSignup" class="cursor-pointer">Signup</a>
+            <a class="cursor-pointer">Forget the passrword?</a>
+        </div>
         <div v-if="error" class="error">{{ error }}</div>
-        <button v-if="!isPending">Log in</button>
+        <button class="g" v-if="!isPending">Log in</button>
         <button v-if="isPending" disabled>Loading</button>
     </form>
 </template>
@@ -13,7 +17,7 @@
 import useLogin from 'composables/useLogin'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-
+import Signup from './Signup.vue';
 
 const { error, login, isPending } = useLogin()
 const router = useRouter()
@@ -27,7 +31,9 @@ const handleSubmit = async () => {
         router.push({ name: 'UserPlaylists' })
     }
 }
-
+const handleSignup = () => {
+    router.push({ name: 'Signup' })
+}
 </script>
 
 <style>
