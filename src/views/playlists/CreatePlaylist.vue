@@ -1,14 +1,14 @@
 <template>
-    <form @submit.prevent="handleSubmit">
-        <h4>Create New Playlist</h4>
-        <input type="text" required placeholder="Playlist title" v-model="title">
+    <form @submit.prevent="handleSubmit" class="flex flex-col w-1/3 justify-center items-center">
+        <h4 class="text-black-600 text-2xl font-bold">Create New Playlist</h4>
+        <input class="w-full" type="text" required placeholder="Playlist title" v-model="title">
         <textarea required placeholder="Playlist description..." v-model="description"></textarea>
         <!-- upload playlist image -->
         <label>Upload playlist cover image</label>
-        <input type="file" @change="handleChange">
+        <input type="file" class="relative left-10" @change="handleChange">
         <div class="error">{{ fileError }}</div>
-        <button v-if="!isPending">Create</button>
-        <button v-else disabled>Saving...</button>
+        <button class="btn relative left-0 top-2" v-if="!isPending">Create</button>
+        <button class="btn relative left-0 top-2" v-else disabled>Saving...</button>
     </form>
 </template>
 
@@ -19,11 +19,11 @@ import useCollection from 'composables/useCollection'
 import getUser from 'composables/getUser'
 import { useRouter } from 'vue-router'
 import { Timestamp } from "firebase/firestore"
+import { computed } from '@vue/reactivity'
 
 
-
-const { uploadImage, filePath } = useStorage()
-const { error, addDoc } = useCollection('playlists')
+const { uploadImage, filePath, isPending: uploadImagePending } = useStorage()
+const { error, addDoc, isPending: addDocPending } = useCollection('playlists')
 const { user } = getUser()
 const router = useRouter()
 const uid = user.uid;
@@ -32,7 +32,15 @@ const title = ref('')
 const description = ref('')
 const file = ref(null)
 const fileError = ref(null)
-const isPending = ref(false)
+const isPending = computed(() => {
+    // isPending = uploadImagePending && addDocPending
+    if (uploadImagePending.value | addDocPending.value) {
+        return true
+    } else {
+        return false
+    }
+
+})
 
 
 const handleSubmit = async () => {
@@ -50,7 +58,7 @@ const handleSubmit = async () => {
         });
 
         if (!error.value) {
-            router.push({ name: 'PlaylistDetails', params: { id: user.value.uid } })
+            router.push({ name: 'UserPlaylists' })
         }
     }
 }

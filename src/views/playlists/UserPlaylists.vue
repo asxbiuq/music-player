@@ -1,5 +1,5 @@
 <template>
-    <div class="user-playlists">
+    <div class="user-playlists w-screen">
         <div v-if="playlists">
             <div v-for="playlist in playlists" :key="playlist.id">
                 <ListView :playlist="playlist" />
@@ -10,7 +10,7 @@
                 <Skeleton />
             <!-- </div> -->
         </div>
-        <router-link :to="{ name: 'CreatePlaylist' }" class="btn">Create a new Playlist</router-link>
+        <router-link :to="{ name: 'CreatePlaylist' }" class="btn btn-outline btn-primary">Create a new Playlist</router-link>
     </div>
 </template>
 

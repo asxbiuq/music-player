@@ -8,8 +8,8 @@
             <a class="cursor-pointer">Forget the passrword?</a>
         </div>
         <div v-if="error" class="error">{{ error }}</div>
-        <button  v-if="!isPending">Log in</button>
-        <button v-if="isPending" disabled>Loading</button>
+        <button class="btn relative left-0 top-2" v-if="!isPending">Log in</button>
+        <button class="btn relative left-0 top-2" v-if="isPending" disabled>Loading</button>
     </form>
 </template>
 
@@ -37,4 +37,5 @@ const handleSignup = () => {
 </script>
 
 <style>
+
 </style>

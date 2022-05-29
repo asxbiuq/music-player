@@ -1,14 +1,17 @@
 <template>
   <div class="container">
     <div class="left img"></div>
-    <div class="right form">
-      <router-view />
+    <div class="right form bg-slate-400">
+      <Transition name="form">
+        <router-view  class="bg-gray "/>
+      </Transition>
     </div>
   </div>
 </template>
 
 <script setup>
-
+import Login from './auth/Login.vue';
+import Signup from './auth/Signup.vue';
 </script>
 
 <style>
@@ -27,6 +30,7 @@ body {
   height: 550px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, .8);
   display: flex;
+  perspective: 1000px;
 }
 
 .left {
@@ -49,6 +53,7 @@ body {
 .right h1 {
   font: 900 30px '';
 }
+
 
 form input {
   width: 230px;
@@ -74,5 +79,25 @@ form button {
   background-image: linear-gradient(to left,
       #9c88ff, #3cadeb);
   text-align: center;
+}
+
+
+
+.form-enter-active {
+  animation: rotate-vertical-center 0.5s;
+}
+.form-leave-active {
+  animation: rotate-vertical-center 0.5s reverse;
+}
+
+
+@keyframes rotate-vertical-center {
+  0% {
+    transform: rotateY(0)
+  }
+
+  100% {
+    transform: rotateY(360deg)
+  }
 }
 </style>
