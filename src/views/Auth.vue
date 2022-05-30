@@ -3,7 +3,7 @@
     <div class="left img"></div>
     <div class="right form bg-slate-400">
       <Transition name="form">
-        <router-view  class="bg-gray "/>
+        <router-view  class="bg-gray"/>
       </Transition>
     </div>
   </div>
@@ -17,8 +17,8 @@ import Signup from './auth/Signup.vue';
 <style>
 body {
   /* 设置背景渐变 */
-  background-image: linear-gradient(to left,
-      #9c88ff, #3cadeb);
+  /* background-image: linear-gradient(to left,
+      #9c88ff, #3cadeb); */
   display: flex;
   justify-content: center;
 }

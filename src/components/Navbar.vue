@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <nav class="flex justify-between">
+    <nav class="">
       
       <div class="avatar">
         <div class="h-20 w-20 rounded-full overflow-hidden">
@@ -48,44 +48,44 @@ const handleClick = async () => {
 </script>
 
 <style scoped>
-.navbar {
+/* .navbar {
   padding: 16px 10px;
   margin-bottom: 10px;
   background: white;
   width: 100vw;
-}
+} */
 
-nav {
+/* nav {
   display: flex;
   align-items: center;
   margin: 0 auto;
   padding:  0 2rem;
   gap: 1rem;
-}
+} */
 
-nav img {
-  /* max-height: 60px; */
-}
+/* nav img {
+   max-height: 60px; 
+} */
 
-nav h1 {
+/* nav h1 {
   margin-left: 20px;
-}
+} */
 
-nav .links {
+/* nav .links {
   margin-left: auto;
-}
+} */
 
-nav .links a,
+/* nav .links a,
 button {
   margin-left: 16px;
   font-size: 14px;
-}
+} */
 
-span {
+/* span {
   font-size: 14px;
   display: inline-block;
   margin-left: 16px;
   padding-left: 16px;
   border-left: 1px solid #eee;
-}
+} */
 </style>

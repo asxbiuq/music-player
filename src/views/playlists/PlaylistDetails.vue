@@ -7,62 +7,53 @@
       <div class="hero min-h-full bg-base-200">
         <div class="hero-content flex flex-col p-10">
           <!-- 用一个容器来占位,防止页面抖动 -->
-          <div class="w-72 h-80">
+          <div class="w-72 h-80 overflow-hidden">
             <img :src="playlist.coverUrl" class=" rounded-xl shadow-2xl " />
           </div>
-          <div>
+          <div class="flex flex-col items-center">
             <h1 class="text-5xl font-bold">{{ playlist.title }}</h1>
             <p class="py-6">{{ playlist.description }}</p>
-            <button class="btn-primary" v-if="ownership" @click="handleDelete">Delete Playlist</button>
+            <button  class=" bg-red-500 block btn static" v-if="ownership" @click="handleDelete">Delete Playlist</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="song-list">
-      <div v-if="!playlist.songs.length">歌单为空</div>
-      <div v-else class="w-full">
-        <div class="overflow-x-auto">
-          <table class="table w-full">
+    <div class="song-list w-full">
+
+
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th></th>
+              <th>歌名</th>
+              <th>歌手</th>
+              <th>是否收藏</th>
+            </tr>
+          </thead>
+
+
+          <tbody v-for="song in playlist.songs" class="single-song" :key="song.id">
+
             <!-- head -->
-            <thead>
-              <tr>
-                <th></th>
-                <th>歌名</th>
-                <th>歌手</th>
-                <th>是否收藏</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- row 1 -->
-              <!-- <div v-for="song in playlist.songs" class="single-song " :key="song.id">
-              <tr class="hover">
-                <th>1</th>
-                <td>{{ song.title }}</td>
-                <td>{{ song.artist }}</td>
-                <td v-if="ownership" @click="handleClick(song.id)">delete</td>
-              </tr>
-            </div> -->
-              <!-- row 2 -->
-              <tr class="hover">
-                <th>2</th>
-                <td>Hart Hagerty</td>
-                <td>Desktop Support Technician</td>
-                <td>Purple</td>
-              </tr>
-              <!-- row 3 -->
-              <tr class="hover">
-                <th>3</th>
-                <td>Brice Swyre</td>
-                <td>Tax Accountant</td>
-                <td>Red</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+
+
+            <!-- row 1 -->
+            <tr class="hover">
+              <th>{{ row++ }}</th>
+              <td>{{ song.title }}</td>
+              <td>{{ song.artist }}</td>
+              <td v-if="ownership" @click="handleClick(song.id)">delete</td>
+            </tr>
+          </tbody>
+
+
+
+        </table>
       </div>
 
-      <AddSong v-if="ownership" :playlist="playlist" />
+      <AddSong v-if="ownership" :playlist="playlist" class="btn bg-red-500" />
     </div>
 
   </div>
@@ -80,7 +71,7 @@ import { ref } from '@vue/reactivity'
 const props = defineProps({
   id: String,
 })
-
+let row = 1
 const playlist = ref('')
 const { user } = getUser()
 const { error, deleteDoc, updateDoc, getDocData } = useDocument('playlists', props.id)//这里的id是playlistId
@@ -137,60 +128,4 @@ const handleClick = async (id) => {
 .song-list {
   grid-area: song-list;
 }
-
-/* .playlist-details {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 80px;
-  
-}
-
-.cover {
-  overflow: hidden;
-  border-radius: 20px;
-  position: relative;
-  padding: 160px;
-}
-
-.cover img {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  max-width: 200%;
-  max-height: 200%;
-}
-
-.playlist-info {
-  text-align: center;
-}
-
-.playlist-info h2 {
-  text-transform: capitalize;
-  font-size: 28px;
-  margin-top: 20px;
-}
-
-.playlist-info p {
-  margin-bottom: 20px;
-}
-
-.username {
-  color: #999;
-}
-
-.description {
-  text-align: left;
-}
-
-.single-song {
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px dashed var(--secondary);
-  margin-bottom: 20px;
-} */
 </style>

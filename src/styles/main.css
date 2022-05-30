@@ -5,39 +5,35 @@
 
 
 /* css 变量 */
-:root {
+/* :root {
   --primary: #4f515a;
   --secondary: #ebebeb;
   --warning: #da0f41;
-}
+} */
 
 /* base styles  */
 * {
   margin: 0;
   padding: 0;
   font-family: 'Nunito', sans-serif;
-  color: var(--primary);
+  /* color: var(--primary); */
 }
 body {
-  background: #fafafa;
+  /* background: #fafafa; */
   height: 100vh;
 }
-a {
+/* a {
   text-decoration: none;
-}
+} */
 
 /* buttons */
 
-button:hover, .btn:hover {
-  background: var(--primary);
-  color: white;
-}
-button:disabled {
+/* button:disabled {
   opacity: 0.5;
   color: var(--primary);
   background: var(--secondary);
   cursor: not-allowed;
-}
+} */
 
 /* forms */
 /* form {
