@@ -1,22 +1,28 @@
 <template>
-    <div class="user-playlists w-screen flex flex-col gap-5 justify-center">
-        <div v-if="playlists" class="flex flex-col gap-5">
-            <div v-for="playlist in playlists" :key="playlist.id">
-                <ListView :playlist="playlist"/>
-            </div>
-        </div>
-        <div v-else class="flex flex-col gap-5">
-            <div v-for="playlist in playlists" :key="playlist.id">
-                <Skeleton/>
-            </div>
-        </div>
-        <div class="flex justify-center relative top-40">
-        <router-link :to="{ name: 'CreatePlaylist' }" class="btn btn-outline  max-w-xs bg-red-500">Create a new Playlist</router-link>
+    <div class="user-playlists w-3/4 flex flex-col gap-5 justify-center ">
+        <div class="h-96">
+            <Transition>
 
+                <div v-if="playlists" class="flex flex-col gap-5 ">
+                    <div v-for="playlist in playlists" :key="playlist.id" class="hover:scale-105 transition-all">
+                        <ListView :playlist="playlist" />
+                    </div>
+                </div>
+                <div v-else class="flex flex-col gap-5">
+                    <div v-for="playlist in playlists" :key="playlist.id">
+                        <Skeleton />
+                    </div>
+                </div>
+            </Transition>
+        </div>
+
+        <div class="flex justify-center relative top-10">
+            <router-link :to="{ name: 'CreatePlaylist' }" class="btn btn-outline  max-w-xs bg-red-500">Create a new
+                Playlist</router-link>
         </div>
     </div>
 
-    
+
 </template>
 
 <script setup>

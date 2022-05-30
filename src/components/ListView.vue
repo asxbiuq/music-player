@@ -11,7 +11,7 @@
         <h3>{{ playlist.title }}</h3>
         <p>Created by {{ playlist.username }}</p>
       </div>
-      <div class="song-number absolute left-3/4">
+      <div class="song-number relative left-3/4">
         <p>{{ playlist.songs.length }}</p>
       </div>
     </div>

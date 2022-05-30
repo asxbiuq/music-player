@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center flex-col items-center w-screen gap-10">
+  <div class="flex justify-center flex-col items-center w-screen gap-10 ">
     <Navbar />
     <router-view />
   </div>

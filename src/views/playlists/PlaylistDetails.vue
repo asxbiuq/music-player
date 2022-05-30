@@ -13,15 +13,13 @@
           <div class="flex flex-col items-center">
             <h1 class="text-5xl font-bold">{{ playlist.title }}</h1>
             <p class="py-6">{{ playlist.description }}</p>
-            <button  class=" bg-red-500 block btn static" v-if="ownership" @click="handleDelete">Delete Playlist</button>
+            <button class=" bg-red-500 block btn static" v-if="ownership" @click="handleDelete">Delete Playlist</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="song-list w-full">
-
-
+    <div class="song-list w-full  ">
       <div class="overflow-x-auto">
         <table class="table w-full">
           <thead>
@@ -33,13 +31,7 @@
             </tr>
           </thead>
 
-
           <tbody v-for="song in playlist.songs" class="single-song" :key="song.id">
-
-            <!-- head -->
-
-
-            <!-- row 1 -->
             <tr class="hover">
               <th>{{ row++ }}</th>
               <td>{{ song.title }}</td>
@@ -47,15 +39,12 @@
               <td v-if="ownership" @click="handleClick(song.id)">delete</td>
             </tr>
           </tbody>
-
-
-
         </table>
       </div>
 
-      <AddSong v-if="ownership" :playlist="playlist" class="btn bg-red-500" />
-    </div>
+      <AddSong v-if="ownership" :playlist="playlist" class="btn bg-red-500 relative top-1/3 left-1/2" />
 
+    </div>
   </div>
 </template>
 

@@ -16,25 +16,17 @@
       </a>
     </div>
     <div class="flex-none">
-
       <div class="btn-group">
-
-
         <div v-if="user">
-
-
           <button class="btn btn-ghost normal-case text-xl">
             <router-link :to="{ name: 'UserPlaylists' }">My Playlists</router-link>
           </button>
-
           <button class="btn btn-ghost normal-case text-xl" @click="handleClick">Logout</button>
         </div>
         <div v-else>
           <router-link class="btn btn-ghost normal-case text-xl" :to="{ name: 'Signup' }">Signup</router-link>
           <router-link class="btn btn-ghost normal-case text-xl" :to="{ name: 'Login' }">Login</router-link>
         </div>
-
-
       </div>
       <button class="btn btn-square btn-ghost">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
