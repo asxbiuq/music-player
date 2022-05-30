@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{ name: 'PlaylistDetails', params: { id: playlist.id } }">
-    <div class="single border border-blue-300 shadow rounded-md p-4 max-w-6xl w-full mx-auto flex gap-5 h-30">
+    <div class="single border border-blue-300 shadow rounded-md p-4 max-w-6xl w-full mx-auto  flex gap-5 h-30">
       <div class="thumbnail rounded-full bg-slate-200 h-20 w-20 overflow-hidden">
         <!-- <div class="h-40 w-40 object-center"> -->
           <img :src="playlist.coverUrl"  />

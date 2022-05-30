@@ -1,7 +1,7 @@
 <template>
   <div v-if="error" class="error">{{ error }}</div>
 
-  <div v-if="playlist" class="shell ">
+  <div v-if="playlist" class="shell">
 
     <div class="playlist-info flex flex-col items-center">
       <div class="hero min-h-full bg-base-200">
