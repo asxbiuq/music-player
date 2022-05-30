@@ -15,13 +15,13 @@ import { ref } from 'vue'
 import useDocument from 'composables/useDocument'
 
 const props = defineProps({
-    playlist:Object
+    playlist: Object
 })
-console.log(props.playlist)
+console.log('playlist:',props.playlist)
 const title = ref('')
 const artist = ref('')
 const showForm = ref(false)
-const { updateDoc } = useDocument('playlists', props.playlist.id)
+const { updateDoc } = useDocument()
 
 const handleSubmit = async () => {
     const newSong = {
@@ -30,7 +30,7 @@ const handleSubmit = async () => {
         id: Math.floor(Math.random() * 100000000)
     }
 
-    await updateDoc({
+    await updateDoc(props.playlist.playlistId.toString(),{
         songs: [...props.playlist.songs, newSong]
     })
 

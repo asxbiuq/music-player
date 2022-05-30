@@ -17,17 +17,18 @@
 import useSignup from "composables/useSignup"
 import { ref } from "vue"
 import { useRouter } from 'vue-router'
-
+import useCollection from "../../composables/useCollection";
 
 const { error, signup, isPending } = useSignup()
 const router = useRouter()
+
 
 const email = ref('')
 const password = ref('')
 const displayName = ref('')
 
 const handleSubmit = async () => {
-    const res = await signup(email.value, password.value, displayName.value)
+    const res = await signup(email.value, password.value)
     if (!error.value) {
         router.push({ name: 'UserPlaylists' })
     }
@@ -39,5 +40,4 @@ const handleLogin = () => {
 </script>
 
 <style>
-
 </style>

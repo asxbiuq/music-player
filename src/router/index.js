@@ -23,26 +23,22 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    beforeEnter: requireAuth
   },
   {
     path: '/auth',
     name: 'Auth',
     component: Auth,
-    beforeEnter: requireAuth,
     redirect: { name: 'Login' },
     children: [
       {
         path: '/login',
         name: 'Login',
         component: Login,
-        beforeEnter: requireAuth
       },
       {
         path: '/signup',
         name: 'Signup',
         component: Signup,
-        beforeEnter: requireAuth
       },
     ],
   },

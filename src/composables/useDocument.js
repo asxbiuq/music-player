@@ -4,7 +4,7 @@ import { getDoc, updateDoc as updateDocRaw } from 'firebase/firestore'
 import { db } from '@/firebase/config'
 import { auth } from '@/firebase/config'
 import { doc } from 'firebase/firestore'
-
+import getPlaylistIds from './getPlaylistsIds'
 const useDocument = (collection, docId) => {
     const error = ref(null)
     const isPending = ref(false)
@@ -27,14 +27,15 @@ const useDocument = (collection, docId) => {
         }
     }
 
-    const updateDoc = async (updates) => {
+    const updateDoc = async (PlaylistId,updates) => {
         isPending.value = true
         error.value = null
         const uid = auth.currentUser.uid
-        const docRef =  doc(db, "playlists", uid)
 
-        try {
-            const res = await updateDocRaw(docRef, updates)
+        const PlaylistRef =  doc(db, 'playlists', PlaylistId)
+
+        try {   
+            const res = await updateDocRaw(PlaylistRef, updates)
             isPending.value = false
             return res
         } catch (err) {

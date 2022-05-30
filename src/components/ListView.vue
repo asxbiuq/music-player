@@ -21,8 +21,11 @@
 
 <script setup>
 import { defineProps } from 'vue'
+import { ref, provide } from 'vue'
 
 const props = defineProps(['playlist'])
+provide('playlist', props.playlist.id)
+ 
 </script>
 
 <style >

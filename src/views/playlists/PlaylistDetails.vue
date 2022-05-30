@@ -78,12 +78,12 @@ import AddSong from "components/AddSong.vue"
 import { ref } from '@vue/reactivity'
 
 const props = defineProps({
-  id: String
+  id: String,
 })
 
 const playlist = ref('')
 const { user } = getUser()
-const { error, deleteDoc, updateDoc, getDocData } = useDocument('playlists', props.id)
+const { error, deleteDoc, updateDoc, getDocData } = useDocument('playlists', props.id)//这里的id是playlistId
 const { deleteImage } = useStorage()
 
 const getPlaylist = (async () => {

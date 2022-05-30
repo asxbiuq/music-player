@@ -1,11 +1,11 @@
 import { ref } from "vue"
 import { createUserWithEmailAndPassword, updateProfile, getAuth } from "firebase/auth";
-
+import useCollection from "./useCollection";
 
 const error = ref(null)
 const isPending = ref(false)
 
-const signup = async (email, password, name) => {
+const signup = async (email, password, col,name, photoURL) => {
     error.value = null
     isPending.value = true
 
@@ -17,9 +17,9 @@ const signup = async (email, password, name) => {
             throw new Error('Could not complete the signup')
         }
 
-        updateProfile(auth.currentUser, {
-            displayName: name, photoURL: "	https://i1.hdslb.com/bfs/space/768cc4fd97618cf589d23c2711a1d1a729f42235.png@305w_80h_1c.webp"
-        })
+        // updateProfile(auth.currentUser, {
+        //     displayName: name, photoURL: photoURL
+        // })
         // 这里需要 error 设置为 null 防止向用户报错
         error.value = null
         isPending.value = false

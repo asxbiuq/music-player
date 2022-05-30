@@ -27,11 +27,12 @@ const { error, addDoc, isPending: addDocPending } = useCollection('playlists')
 const { user } = getUser()
 const router = useRouter()
 const uid = user.uid;
-
 const title = ref('')
+const playlistsName = ref('')
 const description = ref('')
 const file = ref(null)
 const fileError = ref(null)
+const playlist = ref('')
 const isPending = computed(() => {
     // isPending = uploadImagePending && addDocPending
     if (uploadImagePending.value | addDocPending.value) {
@@ -56,7 +57,6 @@ const handleSubmit = async () => {
             songs: [],
             createdAt: Timestamp.fromDate(new Date())
         });
-
         if (!error.value) {
             router.push({ name: 'UserPlaylists' })
         }
