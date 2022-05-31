@@ -3,8 +3,9 @@ import getDocRef from 'composables/getDocRef'
 import { getDoc, updateDoc as updateDocRaw } from 'firebase/firestore'
 import { db } from '@/firebase/config'
 import { auth } from '@/firebase/config'
-import { doc } from 'firebase/firestore'
 import getPlaylistIds from './getPlaylistsIds'
+import { doc, deleteDoc as deleteDocRaw } from "firebase/firestore";
+
 const useDocument = (collection, docId) => {
     const error = ref(null)
     const isPending = ref(false)
@@ -17,6 +18,7 @@ const useDocument = (collection, docId) => {
         error.value = null
 
         try {
+            await deleteDocRaw(doc(db, collection, docId));
             const res = await docRef.delete()
             isPending.value = false
             return res

@@ -4,63 +4,37 @@
 @tailwind utilities;
 
 
-/* css 变量 */
-/* :root {
-  --primary: #4f515a;
-  --secondary: #ebebeb;
-  --warning: #da0f41;
-} */
 
-/* base styles  */
 * {
   margin: 0;
   padding: 0;
   font-family: 'Nunito', sans-serif;
-  /* color: var(--primary); */
+  
 }
 body {
-  /* background: #fafafa; */
   height: 100vh;
 }
-/* a {
-  text-decoration: none;
-} */
 
-/* buttons */
 
-/* button:disabled {
-  opacity: 0.5;
-  color: var(--primary);
-  background: var(--secondary);
-  cursor: not-allowed;
-} */
 
-/* forms */
-/* form {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 1px 2px 3px rgba(50,50,50,0.05);
-  border: 1px solid  var(--secondary);
-  background: white;
-} */
-input, textarea {
-  border: 0;
-  border-bottom: 1px solid var(--secondary);
-  padding: 10px;
-  outline: none;
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 20px auto;
-}
-
-/* error text */
 .error {
   color: var(--warning);
   font-size: 14px;
   margin: 16px 0;
+}
+
+form{
+  @apply flex flex-col gap-3 items-center border-gray-400 border-4 max-w-sm rounded-md p-8
+}
+form label {
+  @apply font-medium text-gray-800 text-2xl
+}
+form input {
+@apply input border-slate-200
+}
+
+form button {
+@apply btn w-4/12
 }
 
 

@@ -13,7 +13,10 @@
           <div class="flex flex-col items-center">
             <h1 class="text-5xl font-bold">{{ playlist.title }}</h1>
             <p class="py-6">{{ playlist.description }}</p>
-            <button class=" bg-red-500 block btn static" v-if="ownership" @click="handleDelete">Delete Playlist</button>
+            <div class="flex gap-4">
+              <button class=" bg-red-500 btn" v-if="ownership" @click="handleDelete">Delete Playlist</button>
+              <button @click="handleAddSong" class="btn bg-red-500">Add Song</button>
+            </div>
           </div>
         </div>
       </div>
@@ -42,7 +45,7 @@
         </table>
       </div>
 
-      <AddSong v-if="ownership" :playlist="playlist" class="btn bg-red-500 relative top-1/3 left-1/2" />
+      <AddSong v-if="ownership" :playlist="playlist"  />
 
     </div>
   </div>
@@ -82,10 +85,11 @@ const ownership = computed(() => {
 })
 
 const handleDelete = async () => {
+  console.log(playlist.value.filePath)
   await deleteImage(playlist.value.filePath)
   // 这里不用传参, 因为调用 useDocument() 时已经传参,并生成 docRef 对象了
   await deleteDoc()
-  router.push({ name: 'Home' })
+  router.push({ name: 'UserPlaylists' })
 }
 
 const handleClick = async (id) => {
@@ -93,7 +97,9 @@ const handleClick = async (id) => {
   // 简写
   await updateDoc({ songs })
 }
-
+const handleAddSong = () => {
+  router.push({ name: 'AddSong' })
+}
 
 </script>
 

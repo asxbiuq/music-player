@@ -1,8 +1,8 @@
 <template>
     <div class="add-song">
-        <button v-if="!showForm" @click="showForm = true">Add Songs</button>
-        <form v-if="showForm" @submit.prevent="handleSubmit">
-            <h4>Add a New Song</h4>
+         <!-- <button v-if="!showForm" @click="showForm = true">Add Songs</button> -->
+         <form  @submit.prevent="handleSubmit"> 
+            <label>Add a New Song</label>
             <input type="text" placeholder="Song title" required v-model="title">
             <input type="text" placeholder="Artist" required v-model="artist">
             <button>Add</button>
@@ -40,7 +40,7 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped>
-.add-song {
+/* .add-song {
     text-align: center;
     margin-top: 40px;
 }
@@ -48,5 +48,5 @@ const handleSubmit = async () => {
 form {
     max-width: 100%;
     text-align: left;
-}
+} */
 </style>

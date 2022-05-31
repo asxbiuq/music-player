@@ -4,14 +4,14 @@
             <Transition>
 
                 <div v-if="playlists" class="flex flex-col gap-5 ">
-                    <div v-for="playlist in playlists" :key="playlist.id" class="hover:scale-105 transition-all">
+                    <div v-for="playlist in playlists" :key="playlist.id" class="hover:scale-105 transition-all ">
                         <ListView :playlist="playlist" />
                     </div>
                 </div>
                 <div v-else class="flex flex-col gap-5">
-                    <div v-for="playlist in playlists" :key="playlist.id">
+                    <!-- <div v-for="playlist in playlists" :key="playlist.id"> -->
                         <Skeleton />
-                    </div>
+                    <!-- </div> -->
                 </div>
             </Transition>
         </div>

@@ -14,11 +14,8 @@ import Login from './auth/Login.vue';
 import Signup from './auth/Signup.vue';
 </script>
 
-<style>
+<style scoped>
 body {
-  /* 设置背景渐变 */
-  /* background-image: linear-gradient(to left,
-      #9c88ff, #3cadeb); */
   display: flex;
   justify-content: center;
 }
@@ -55,31 +52,6 @@ body {
 }
 
 
-form input {
-  width: 230px;
-  margin: 20px 0;
-  outline: none;
-  border: 0;
-  padding: 10px;
-  border-bottom: 3px solid rgb(80, 80, 170);
-  font: 900 16px '';
-}
-
-form button {
-  position: absolute;
-  margin: 20px;
-  bottom: 40px;
-  display: block;
-  width: 200px;
-  height: 60px;
-  font: 900 30px '';
-  text-decoration: none;
-  line-height: 50px;
-  border-radius: 30px;
-  background-image: linear-gradient(to left,
-      #9c88ff, #3cadeb);
-  text-align: center;
-}
 
 
 
@@ -99,5 +71,16 @@ form button {
   100% {
     transform: rotateY(360deg)
   }
+}
+
+input, textarea {
+  border: 0;
+  border-bottom: 1px solid var(--secondary);
+  padding: 10px;
+  outline: none;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 20px auto;
 }
 </style>

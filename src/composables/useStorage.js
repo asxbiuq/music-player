@@ -1,8 +1,10 @@
 import { storage } from '@/firebase/config'
 import { ref } from "vue"
 import getUser from "composables/getUser"
-import { ref as fireRef, uploadBytes, getDownloadURL } from "firebase/storage";
-
+import { uploadBytes, getDownloadURL } from "firebase/storage";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from '../firebase/config';
+import { getStorage, ref as fireRef, deleteObject } from "firebase/storage";
 const { user } = getUser()
 
 const useStorage = () => {
@@ -34,18 +36,31 @@ const useStorage = () => {
         }
     }
 
-    const deleteImage = async (path) => {
+    const deleteImage = async (filePath) => {
         isPending.value = true
-        const storageRef = ref(storage);
+        // filePath.value = `covers/${user.value.uid}/${file.name}`
+        const desertRef = fireRef(storage, filePath);
+        // Delete the file
+        deleteObject(desertRef).then(() => {
+            // File deleted successfully
 
-        try {
-            await storageRef.delete()
+            console.log(filePath," is delete success")
             error.value = null
             isPending.value = false
-        } catch (err) {
+        }).catch((err) => {
+            // Uh-oh, an error occurred!
             console.log(err.message)
             error.value = err.message
-        }
+        });
+        // try {
+        //     await deleteDoc(doc(db, col, doc));
+
+        //     error.value = null
+        //     isPending.value = false
+        // } catch (err) {
+        //     console.log(err.message)
+        //     error.value = err.message
+        // }
     }
 
 

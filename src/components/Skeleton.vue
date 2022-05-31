@@ -1,8 +1,8 @@
 <template>
 <div class="skeleton">
-        <div class="border border-blue-300 shadow rounded-md p-4 max-w-6xl w-full mx-auto flex gap-5 h-30">
+        <div class="border animate-pulse border-blue-300 shadow rounded-md p-4 max-w-6xl w-full mx-auto flex gap-5 h-30">
 
-            <div class="rounded-full bg-slate-200 h-20 w-20 overflow-hidden"></div>
+            <div class="rounded-full bg-slate-200 h-20 w-20 overflow-hidden "></div>
 
             <div class="flex-1 space-y-6 py-1">
 
