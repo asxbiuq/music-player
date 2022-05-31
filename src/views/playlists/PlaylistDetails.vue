@@ -3,7 +3,7 @@
 
   <div v-if="playlist" class="shell">
 
-    <div class="playlist-info flex flex-col items-center">
+    <div class="left flex flex-col items-center">
       <div class="hero min-h-full bg-base-200">
         <div class="hero-content flex flex-col p-10">
           <!-- 用一个容器来占位,防止页面抖动 -->
@@ -15,39 +15,20 @@
             <p class="py-6">{{ playlist.description }}</p>
             <div class="flex gap-4">
               <button class=" bg-red-500 btn" v-if="ownership" @click="handleDelete">Delete Playlist</button>
-              <button @click="handleAddSong" class="btn bg-red-500">Add Song</button>
+              <div v-if="!isAddSong">
+                <button @click="handleAddSong" class="btn bg-red-500">Add Song</button>
+              </div>
+              <div v-else>
+                <button @click="handleSongList" class="btn bg-red-500">Song List</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="song-list w-full  ">
-      <div class="overflow-x-auto">
-        <table class="table w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>歌名</th>
-              <th>歌手</th>
-              <th>是否收藏</th>
-            </tr>
-          </thead>
+    <router-view class="right" />
 
-          <tbody v-for="song in playlist.songs" class="single-song" :key="song.id">
-            <tr class="hover">
-              <th>{{ row++ }}</th>
-              <td>{{ song.title }}</td>
-              <td>{{ song.artist }}</td>
-              <td v-if="ownership" @click="handleClick(song.id)">delete</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <AddSong v-if="ownership" :playlist="playlist"  />
-
-    </div>
   </div>
 </template>
 
@@ -58,7 +39,10 @@ import getUser from 'composables/getUser'
 import { computed } from '@vue/runtime-core'
 import { useRouter } from "vue-router"
 import AddSong from "components/AddSong.vue"
-import { ref } from '@vue/reactivity'
+import SongList from "components/SongList.vue"
+import { ref, provide } from 'vue'
+
+const isAddSong = ref(false)
 
 const props = defineProps({
   id: String,
@@ -72,6 +56,7 @@ const { deleteImage } = useStorage()
 const getPlaylist = (async () => {
   const { docData } = await getDocData()
   playlist.value = docData.value
+
 })()
 // console.log(playlist.value.title)
 
@@ -98,9 +83,15 @@ const handleClick = async (id) => {
   await updateDoc({ songs })
 }
 const handleAddSong = () => {
+  isAddSong.value = !isAddSong.value
   router.push({ name: 'AddSong' })
 }
+const handleSongList = () => {
+  isAddSong.value = !isAddSong.value
+  router.push({ name: 'SongList' })
+}
 
+provide('playlist', playlist)
 </script>
 
 <style scoped>
@@ -111,16 +102,16 @@ const handleAddSong = () => {
   gap: 0px 3rem;
   grid-auto-flow: row;
   grid-template-areas:
-    "playlist-info song-list song-list"
-    "playlist-info song-list song-list"
+    "left right right"
+    "left right right"
     /* ". . ."; */
 }
 
-.playlist-info {
-  grid-area: playlist-info;
+.left {
+  grid-area: left;
 }
 
-.song-list {
-  grid-area: song-list;
+.right {
+  grid-area: right;
 }
 </style>

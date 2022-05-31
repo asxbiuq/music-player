@@ -4,7 +4,7 @@
         <!-- <input type="text" placeholder="Display name" v-model="displayName"> -->
         <input type="email" placeholder="Email" v-model="email">
         <input type="password" placeholder="Password" v-model="password">
-        <div class="flex justify-between">
+        <div class="relative right-20">
             <a @click="handleLogin" class="cursor-pointer ">Login</a>
         </div>
         <div v-if="error" class="error">{{ error }}</div>

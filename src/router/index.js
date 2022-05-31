@@ -9,7 +9,7 @@ import Auth from 'views/Auth.vue'
 import PlayLists from 'views/PlayLists.vue'
 import { auth } from '@/firebase/config'
 import AddSong from 'components/AddSong.vue'
-
+import SongList from 'components/SongList.vue'
 
 
 const requireAuth = (to, from, next) => {
@@ -65,6 +65,7 @@ const routes = [
         component: PlaylistDetails,
         beforeEnter: requireAuth,
         props: true,
+        redirect: { name: 'SongList' },
         children: [
           {
             path: 'addsong',
@@ -73,9 +74,9 @@ const routes = [
             beforeEnter: requireAuth
           },
           {
-            path: 'create',
-            name: 'CreatePlaylist',
-            component: CreatePlaylist,
+            path: 'songlist',
+            name: 'SongList',
+            component: SongList,
             beforeEnter: requireAuth
           },
         ]

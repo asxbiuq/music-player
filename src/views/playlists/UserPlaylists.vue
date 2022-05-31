@@ -1,7 +1,7 @@
 <template>
     <div class="user-playlists w-3/4 flex flex-col gap-5 justify-center ">
         <div class="h-96">
-            <Transition>
+
 
                 <div v-if="playlists" class="flex flex-col gap-5 ">
                     <div v-for="playlist in playlists" :key="playlist.id" class="hover:scale-105 transition-all ">
@@ -13,7 +13,7 @@
                         <Skeleton />
                     <!-- </div> -->
                 </div>
-            </Transition>
+
         </div>
 
         <div class="flex justify-center relative top-10">

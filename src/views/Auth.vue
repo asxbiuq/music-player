@@ -1,10 +1,12 @@
 <template>
-  <div class="container">
-    <div class="left img"></div>
-    <div class="right form bg-slate-400">
-      <Transition name="form">
-        <router-view  class="bg-gray"/>
-      </Transition>
+  <div class="flex justify-center items-center h-screen">
+    <div class="shell">
+      <div class="left img"></div>
+      <div class="right form bg-slate-400">
+        <Transition name="form">
+          <router-view class="bg-gray" />
+        </Transition>
+      </div>
     </div>
   </div>
 </template>
@@ -15,18 +17,15 @@ import Signup from './auth/Signup.vue';
 </script>
 
 <style scoped>
-body {
-  display: flex;
-  justify-content: center;
-}
-
-.container {
-  position: relative;
-  top: 100px;
-  width: 1100px;
-  height: 550px;
+.shell {
+  /* position: relative;
+  top: 100px;*/
+  /* width: 1100px; */
+  /* height: 550px;  */
   box-shadow: 0 5px 15px rgba(0, 0, 0, .8);
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   perspective: 1000px;
 }
 
@@ -55,14 +54,6 @@ body {
 
 
 
-.form-enter-active {
-  animation: rotate-vertical-center 0.5s;
-}
-.form-leave-active {
-  animation: rotate-vertical-center 0.5s reverse;
-}
-
-
 @keyframes rotate-vertical-center {
   0% {
     transform: rotateY(0)
@@ -73,14 +64,5 @@ body {
   }
 }
 
-input, textarea {
-  border: 0;
-  border-bottom: 1px solid var(--secondary);
-  padding: 10px;
-  outline: none;
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 20px auto;
-}
+
 </style>

@@ -5,7 +5,7 @@
         <textarea required placeholder="Playlist description..." v-model="description"></textarea>
         <!-- upload playlist image -->
         <label>Upload playlist cover image</label>
-        <input type="file" class="relative left-10" @change="handleChange">
+        <input type="file"  @change="handleChange">
         <div class="error">{{ fileError }}</div>
         <button class="btn relative left-0 top-2" v-if="!isPending">Create</button>
         <button class="btn relative left-0 top-2" v-else disabled>Saving...</button>
@@ -81,7 +81,7 @@ const handleChange = (e) => {
 </script>
 
 <style>
-input[type="file"] {
+/* input[type="file"] {
     border: 0;
     padding: 0;
 }
@@ -94,5 +94,5 @@ label {
 
 button {
     margin-top: 20px;
-}
+} */
 </style>
