@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{ name: 'PlaylistDetails', params: { id: playlist.id } }">
-    <div v-if="playlist">
+    <!-- <div v-if="playlist"> -->
 
       <div class="single border border-blue-300 shadow rounded-md p-4 max-w-6xl w-full mx-auto  flex gap-5  h-30 justify-between">
         <div class="thumbnail rounded-full bg-slate-200 h-20 w-20 overflow-hidden">
@@ -14,10 +14,10 @@
           <p>{{ playlist.songs.length }}</p>
         </div>
       </div>
-    </div>
-    <div v-else>
+    <!-- </div> -->
+    <!-- <div v-else>
       <Skeleton />
-    </div>
+    </div> -->
   </router-link>
 
 </template>
