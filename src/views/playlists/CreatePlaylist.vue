@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="handleSubmit" class="flex flex-col w-1/3 justify-center items-center">
+    <form @submit.prevent="handleSubmit" class="flex flex-col w-1/3 justify-center items-center self-center">
         <h4 class="text-black-600 text-2xl font-bold">Create New Playlist</h4>
         <input class="w-full" type="text" required placeholder="Playlist title" v-model="title">
         <textarea required placeholder="Playlist description..." v-model="description"></textarea>

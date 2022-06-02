@@ -29,14 +29,14 @@ const useDocument = (collection, docId) => {
         }
     }
 
-    const updateDoc = async (PlaylistId,updates) => {
+    const updateDoc = async (PlaylistId, updates) => {
         isPending.value = true
         error.value = null
         const uid = auth.currentUser.uid
 
-        const PlaylistRef =  doc(db, 'playlists', PlaylistId)
+        const PlaylistRef = doc(db, 'playlists', PlaylistId)
 
-        try {   
+        try {
             const res = await updateDocRaw(PlaylistRef, updates)
             isPending.value = false
             return res
@@ -48,6 +48,7 @@ const useDocument = (collection, docId) => {
     }
 
     const getDocData = async () => {
+        
         const docSnap = await getDoc(docRef);
         const docData = ref(null)
 
@@ -59,8 +60,12 @@ const useDocument = (collection, docId) => {
             error.value = 'that document does not exist'
             console.log("No such document!");
         }
+
         return { docData }
     }
+
+    // 追踪Snapshot状态和依赖,在其变更时关闭并重新运行,这样可以防止内存溢出
+
 
     return { error, isPending, deleteDoc, updateDoc, getDocData }
 }

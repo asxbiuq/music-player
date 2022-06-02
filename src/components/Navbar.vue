@@ -1,7 +1,7 @@
 <template>
   <div class="navbar bg-base-300 h-20">
     <div class="flex-none">
-      <button class="btn btn-square btn-ghost">
+      <button class="btn-nar">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
           class="inline-block w-5 h-5 stroke-current">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -9,26 +9,26 @@
       </button>
     </div>
     <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-xl">
-        <h1>
+      <a class="btn-nar">
+        
           <router-link :to="{ name: 'Home' }">Music-Posts</router-link>
-        </h1>
+        
       </a>
     </div>
     <div class="flex-none">
       <div class="btn-group">
         <div v-if="user">
-          <button class="btn btn-ghost normal-case text-xl">
+          <button class="btn-nar">
             <router-link :to="{ name: 'UserPlaylists' }">My Playlists</router-link>
           </button>
-          <button class="btn btn-ghost normal-case text-xl" @click="handleClick">Logout</button>
+          <button class="btn-nar" @click="handleClick">Logout</button>
         </div>
         <div v-else>
-          <router-link class="btn btn-ghost normal-case text-xl" :to="{ name: 'Signup' }">Signup</router-link>
-          <router-link class="btn btn-ghost normal-case text-xl" :to="{ name: 'Login' }">Login</router-link>
+          <router-link class="btn-nar" :to="{ name: 'Signup' }">Signup</router-link>
+          <router-link class="btn-nar" :to="{ name: 'Login' }">Login</router-link>
         </div>
       </div>
-      <button class="btn btn-square btn-ghost">
+      <button class="btn-nar">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
           class="inline-block w-5 h-5 stroke-current">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

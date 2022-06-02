@@ -1,12 +1,12 @@
 <template>
-  <div class="hero relative top-40 ">
+  <div class="hero  top-40 overflow-none">
     <div class="hero-content  flex flex-row justify-center gap-10">
-      <div>
+      <div class="overflow-visible">
         <img src="src/assets/60a8528451475473.jfif"
-          class="record w-50  h-50 rounded-full  object-contain animate-spin " />
+          class="record w-50  h-50 rounded-full  object-contain animate-spin overflow-none" />
       </div>
-      <div class="flex flex-col">
-        <h1 class="text-5xl font-bold">Music-Posts</h1>
+      <div class="flex flex-col overflow-visible">
+        <h1 class="text-5xl font-bold overflow-visible">Music-Posts</h1>
         <p class="py-6  w-60">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
           exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
 
@@ -28,5 +28,12 @@ const handleClick = () => {
 </script>
 
 <style>
-
+.hero {
+  overflow: visible;
+  position: relative;
+}
+.hero > *{
+  overflow: visible;
+  position: relative;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="add-song">
+    <div class="add-song ">
         <!-- <button v-if="!showForm" @click="showForm = true">Add Songs</button> -->
         <form @submit.prevent="handleSubmit">
             <label>Add a New Song</label>
@@ -34,11 +34,14 @@ const handleSubmit = async () => {
         artist: artist.value,
         id: Math.floor(Math.random() * 100000000)
     }
-
+    // 上传数据
     await updateDoc(playlist.value.playlistId.toString(), {
         songs: [...playlist.value.songs, newSong]
     })
-
+    // 更新本地的数据
+    playlist.value.songs.push(newSong)
+    // console.log(playlist.value)
+    // 清空表格里的数据
     title.value = ''
     artist.value = ''
 
@@ -47,5 +50,4 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped>
-
 </style>

@@ -8,6 +8,7 @@
         </Transition>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -50,7 +51,12 @@ import Signup from './auth/Signup.vue';
   font: 900 30px '';
 }
 
-
+.form-enter-active {
+  animation: rotate-vertical-center 0.5s;
+}
+.form-leave-active {
+  animation: rotate-vertical-center 0.5s reverse;
+}
 
 
 
@@ -63,6 +69,4 @@ import Signup from './auth/Signup.vue';
     transform: rotateY(360deg)
   }
 }
-
-
 </style>

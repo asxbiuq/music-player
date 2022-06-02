@@ -3,7 +3,9 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue({
+    reactivityTransform: true //开启$语法糖
+  })],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
