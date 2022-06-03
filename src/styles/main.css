@@ -28,7 +28,7 @@
   /* 设置position的默认为relative */
   /* 当要设置position: absolute到与其父级的父级相
   关的元素时,在这种情况下，必须设置 position: static给父母 */
-   /* position:relative;  */
+   position:relative; 
    /* 将所有的盒子设置为BFC */
    overflow: auto;
 }
@@ -77,10 +77,10 @@ form label {
   @apply font-medium text-gray-800 text-2xl
 }
 form input {
-@apply input rounded-none
+  @apply input rounded-none
 }
 form button {
-@apply btn w-4/12 min-w-fit bg-red-500 
+  @apply btn w-4/12 min-w-fit bg-red-500 
 }
 form textarea {
   @apply border-slate-200 border-2;
