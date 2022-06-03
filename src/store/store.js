@@ -1,10 +1,8 @@
 
+import { ref } from "vue"
+
+const playlists = ref(null)
 
 
-const temporaryPlanList = Symbol()
-const dailyPlanList = Symbol()
 
-export default {
-  temporaryPlanList,
-  dailyPlanList
-}
+export  {playlists}

@@ -6,20 +6,18 @@
 </template>
 
 <script setup>
-import { inject } from "@vue/runtime-core"
+import { defineEmits } from "vue"
 
+const emits = defineEmits(['PagePre', 'PageNext'])
 
-let pageIndex = inject('pageIndex')
 const handlePageNext = () => {
-    pageIndex++
-    console.log(pageIndex)
+  emits('PageNext')
 }
+
 const handlePagePre = () => {
-    pageIndex--
-    console.log(pageIndex)
+  emits('PagePre')
 }
 </script>
 
 <style>
-
 </style>

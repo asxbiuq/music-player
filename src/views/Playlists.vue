@@ -3,11 +3,13 @@
     <!-- 导航栏 -->
     <Navbar />
     <!-- playlist -->
-    <router-view />
+    <Suspense>
+      <router-view />
+    </Suspense>
 
 
   </div>
-  
+
 </template>
 <script setup>
 import Pagination from "../components/Pagination.vue";
@@ -18,5 +20,4 @@ import ProfileCard from 'views/ProfileCard.vue'
 import ProfileCardSkeleton from "./ProfileCardSkeleton.vue";
 </script>
 <style scoped>
-
 </style>
