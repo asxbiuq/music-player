@@ -1,38 +1,42 @@
 <template>
     <div class="user-playlists w-full flex flex-col justify-between overflow-hidden h-full items-center gap-2">
-
+        
         <div v-if="showLists">
-            <!-- PLAYLIST -->
-            <div class="playlist-items flex flex-col gap-5 overflow-hidden w-[90%] h-full">
-                <!-- v-for 会循环产生与循环条件语句相同的盒子,所以子元素的大小在条件语句里设置 -->
-                <div v-for=" showList in showLists" :key="showList.id"
-                    class="playlist-item hover:scale-105 transition-all h-[15%] overflow-visible top-2">
+        </div>
+        <!-- PLAYLIST -->
+        <div class="playlist-items flex flex-col gap-5 overflow-hidden w-[90%] h-full">
+            <!-- v-for 会循环产生与循环条件语句相同的盒子,所以子元素的大小在条件语句里设置 -->
+            <div v-for=" showList in showLists" :key="showList.id"
+                class="playlist-item hover:scale-105 transition-all h-[15%] overflow-visible top-2">
 
-                    <playlist :length="showList.length" :id="showList.id" :cover-url="showList.coverUrl"
-                        :name="showList.name" :routerLinkName="'PlaylistDetails'" :title="showList.title" />
+                <playlist 
+                    :length="showList.length" 
+                    :id="showList.id" 
+                    :cover-url="showList.coverUrl" 
+                    :name="showList.name"
+                    :routerLinkName="'PlaylistDetails'" 
+                    :title="showList.title"
+                />
+                
 
-
-                </div>
-            </div>
-
-            <!-- createPlaylistBtn -->
-            <div class="createPlaylistBtn overflow-visible">
-                <router-link :to="{ name: 'CreatePlaylist' }" class="btn  bg-red-500">Create a new
-                    Playlist</router-link>
-            </div>
-
-            <!-- 翻页按钮 -->
-            <div class="w-1/2 overflow-visible mb-2">
-                <Pagination @PagePre="handlePagePre" @PageNext="handlePageNext" class="overflow-visible" />
             </div>
         </div>
 
+        <!-- createPlaylistBtn -->
+        <div class="createPlaylistBtn overflow-visible">
+            <router-link :to="{ name: 'CreatePlaylist' }" class="btn  bg-red-500">Create a new
+                Playlist</router-link>
+        </div>
+
+        <!-- 翻页按钮 -->
+        <div class="w-1/2 overflow-visible mb-2">
+            <Pagination @PagePre="handlePagePre" @PageNext="handlePageNext" class="overflow-visible" />
+        </div>
 
     </div>
 </template>
 
 <script setup>
-import SkeletonPlayDetailsVue from "../../components/SkeletonPlayDetails.vue";
 import playlist from "components/ListView.vue";
 import { computed } from "vue";
 import Navbar from "components/Navbar.vue";
@@ -44,7 +48,7 @@ import { reactive } from 'vue'
 import { db } from "../../firebase/config";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import getDoc from 'composables/getDoc'
-
+ 
 
 
 
