@@ -14,6 +14,7 @@
                     :routerLinkName="'PlaylistDetails'" 
                     :title="showList.title"
                 />
+                
 
             </div>
         </div>
@@ -44,6 +45,9 @@ import { reactive } from 'vue'
 import { db } from "../../firebase/config";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import getDoc from 'composables/getDoc'
+ 
+
+
 
 const { user } = getUser()
 
