@@ -1,15 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from 'views/Home.vue'
-import Login from 'views/auth/Login.vue'
-import Signup from 'views/auth/Signup.vue'
-import CreatePlaylist from 'views/playlists/CreatePlaylist.vue'
-import PlaylistDetails from 'views/playlists/PlaylistDetails.vue'
-import UserPlaylists from 'views/playlists/UserPlaylists.vue'
-import Auth from 'views/Auth.vue'
-import PlayLists from 'views/PlayLists.vue'
 import { auth } from '@/firebase/config'
-import AddSong from 'components/AddSong.vue'
-import SongList from 'components/SongList.vue'
+
 
 
 const requireAuth = (to, from, next) => {
@@ -25,30 +16,30 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: () => import('views/Home.vue'),
   },
   {
     path: '/auth',
     name: 'Auth',
-    component: Auth,
+    component: () => import('views/Auth.vue'),
     redirect: { name: 'Login' },
     children: [
       {
         path: '/login',
         name: 'Login',
-        component: Login,
+        component: () => import('views/auth/Login.vue'),
       },
       {
         path: '/signup',
         name: 'Signup',
-        component: Signup,
+        component: () => import('views/auth/Signup.vue'),
       },
     ],
   },
   {
     path: '/playlists',
     name: 'PlayLists',
-    component: PlayLists,
+    component: () => import('views/PlayLists.vue'),
     beforeEnter: requireAuth,
     redirect: { name: 'UserPlaylists' },
     children: [ 
@@ -56,13 +47,13 @@ const routes = [
       {
         path: 'create',
         name: 'CreatePlaylist',
-        component: CreatePlaylist,
+        component: () => import('views/playlists/CreatePlaylist.vue'),
         beforeEnter: requireAuth
       },
       {
         path: ':id',
         name: 'PlaylistDetails',
-        component: PlaylistDetails,
+        component: () => import('views/playlists/PlaylistDetails.vue'),
         beforeEnter: requireAuth,
         props: true,
         redirect: { name: 'SongList' },
@@ -70,13 +61,13 @@ const routes = [
           {
             path: 'addsong',
             name: 'AddSong',
-            component: AddSong,
+            component: () => import('components/AddSong.vue'),
             beforeEnter: requireAuth
           },
           {
             path: 'songlist',
             name: 'SongList',
-            component: SongList,
+            component: () => import('components/SongList.vue'),
             beforeEnter: requireAuth
           },
         ]
@@ -84,7 +75,7 @@ const routes = [
       {
         path: 'user',
         name: 'UserPlaylists',
-        component: UserPlaylists,
+        component: () => import('views/playlists/UserPlaylists.vue'),
         beforeEnter: requireAuth
       },
     ]

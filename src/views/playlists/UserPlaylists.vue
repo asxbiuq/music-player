@@ -1,10 +1,10 @@
 <template>
-    <div class="user-playlists w-full flex flex-col justify-between overflow-hidden h-fit items-center gap-2">
+    <div class="user-playlists w-full flex flex-col justify-between overflow-hidden h-full items-center gap-2">
         <!-- PLAYLIST -->
-        <div class="playlist-items flex flex-col gap-5 justify-center overflow-hidden w-[90%]">
+        <div class="playlist-items flex flex-col gap-5 overflow-hidden w-[90%] h-full">
             <!-- v-for 会循环产生与循环条件语句相同的盒子,所以子元素的大小在条件语句里设置 -->
             <div v-for="playlist in showList" :key="playlist.id"
-                class="playlist-item hover:scale-105 transition-all h-[15%] overflow-visible">
+                class="playlist-item hover:scale-105 transition-all h-[15%] overflow-visible top-2">
                 <ListView :playlist="playlist" />
             </div>
         </div>
@@ -16,8 +16,8 @@
         </div>
 
         <!-- 翻页按钮 -->
-        <div class="w-1/2 overflow-visible">
-            <Pagination @PagePre="handlePagePre" @PageNext="handlePageNext" />
+        <div class="w-1/2 overflow-visible mb-2">
+            <Pagination @PagePre="handlePagePre" @PageNext="handlePageNext" class="overflow-visible"/>
         </div>
 
     </div>
@@ -49,25 +49,20 @@ let pageIndex = $ref(1)
 
 // 展示页的数据
 const showList = computed(() => {
-    return playlists.slice(pageIndex - 1, pageIndex - 4)
+    return playlists.slice((pageIndex-1)*5, (pageIndex)*5)
 })
-
+console.log(showList.value)
 const maxPageNum = computed(() => {
     return Math.ceil(playlists.length / 5)
 })
-
-
-const handlePageChange = (pageIndex) => {
-    console.log('CurrentPage:', pageIndex)
-}
-
+console.log(maxPageNum.value)
 const handlePageNext = () => {
     if (pageIndex >= maxPageNum.value) {
         console.log('The last page!')
         return
     } else {
         pageIndex++
-        console.log(pageIndex)
+    console.log('CurrentPage:', pageIndex)
     }
 }
 const handlePagePre = () => {
@@ -76,7 +71,7 @@ const handlePagePre = () => {
         return
     } else {
         pageIndex--
-        console.log(pageIndex)
+    console.log('CurrentPage:', pageIndex)
     }
 }
 </script>

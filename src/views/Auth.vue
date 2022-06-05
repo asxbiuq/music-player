@@ -2,19 +2,28 @@
   <div class="flex justify-center items-center h-screen">
     <div class="shell">
       <div class="left img"></div>
-      <div class="right form bg-slate-400">
+      <div class="right form bg-slate-400 overflow-hidden">
         <Transition name="form">
           <router-view class="bg-gray" />
         </Transition>
+        <!-- 由于<router-view> can no longer be used directly inside <transition> or <keep-alive>.改写为:-->
+        <!-- <router-view v-slot="{ Component }" class="bg-gray">
+          <transition 
+          name="form"
+          >
+            <component :is="Component" />
+          </transition>
+        </router-view> -->
       </div>
     </div>
-    
+
   </div>
 </template>
 
 <script setup>
 import Login from './auth/Login.vue';
 import Signup from './auth/Signup.vue';
+import 'animate.css';
 </script>
 
 <style scoped>
@@ -54,9 +63,11 @@ import Signup from './auth/Signup.vue';
 .form-enter-active {
   animation: rotate-vertical-center 0.5s;
 }
-.form-leave-active {
+/* 由于<router-view> can no longer be used directly inside <transition> or <keep-alive>. 所以取消离去动画*/
+/* .form-leave-active {
   animation: rotate-vertical-center 0.5s reverse;
-}
+} */
+
 
 
 
@@ -67,6 +78,17 @@ import Signup from './auth/Signup.vue';
 
   100% {
     transform: rotateY(360deg)
+  }
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.10);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 </style>
