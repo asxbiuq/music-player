@@ -16,17 +16,17 @@
               <h1 class="text-5xl font-bold overflow-visible">{{ playlist.title }}</h1>
               <p class="py-6">{{ playlist.description }}</p>
               <div class="doubleBtn">
-              
-                  <button class=" bg-red-500 btn" @click="handleDelete">Delete Playlist</button>
-  
-            
-                  <div v-if="!isAddSong" >
-                    <button @click="handleAddSong" class="btn bg-red-500">Add Song</button>
-                  </div>
-                  <div v-else>
-                    <button @click="handleSongList" class="btn bg-red-500">Song List</button>
-                  </div>
-              
+
+                <button class=" bg-red-500 btn" @click="handleDelete">Delete Playlist</button>
+
+
+                <div v-if="!isAddSong">
+                  <button @click="handleAddSong" class="btn bg-red-500">Add Song</button>
+                </div>
+                <div v-else>
+                  <button @click="handleSongList" class="btn bg-red-500">Song List</button>
+                </div>
+
               </div>
             </div>
           </div>
@@ -49,15 +49,26 @@ import AddSong from "components/AddSong.vue"
 import SongList from "components/SongList.vue"
 import { ref, provide } from 'vue'
 import { watchEffect } from "vue";
+import { onActivated } from "vue"
+import { defineProps } from "vue"
+import { reactive } from "vue"
+import { onUpdated } from "vue"
+import { onBeforeMount } from "vue"
+import { onBeforeUpdate } from "vue"
+import { onMounted } from "vue"
+
 
 const isAddSong = ref(false)
 
-const props = defineProps({
-  id: String,
-})
 let row = 1
 const playlist = ref('')
 const { user } = getUser()
+const props = defineProps({
+  id: String,
+})
+
+console.log(props.id)
+
 const { error, deleteDoc, updateDoc, getDocData } = useDocument('playlists', props.id)//这里的id是playlistId
 const { deleteImage } = useStorage()
 
@@ -66,8 +77,6 @@ const getPlaylist = (async () => {
   playlist.value = docData.value
 
 })()
-// console.log(playlist.value.title)
-
 
 
 const router = useRouter()
@@ -122,6 +131,7 @@ provide('playlist', playlist)
 .right {
   grid-area: right;
 }
+
 .doubleBtn {
   display: flex;
   width: 100%;

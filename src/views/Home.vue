@@ -1,5 +1,4 @@
 <template>
-
   <div class="hero  top-40 overflow-none">
     <div class="hero-content  flex flex-row justify-center gap-10">
 

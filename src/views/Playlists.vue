@@ -3,10 +3,27 @@
     <!-- 导航栏 -->
     <Navbar />
     <!-- playlist -->
-    <Suspense>
+    <!-- <Suspense>
       <router-view />
-    </Suspense>
+    </Suspense> -->
+    <RouterView v-slot="{ Component }">
+      <template v-if="Component">
+        <Transition mode="out-in">
+          <!-- 防止页面数据不更新,排除 PlaylistDetails组件 -->
+          <KeepAlive exclude="PlaylistDetails">
+            <Suspense>
+              <!-- 主要内容 -->
+              <component :is="Component"></component>
 
+              <!-- 加载中状态 -->
+              <template #fallback class="bg-black-500">
+                正在加载...
+              </template>
+            </Suspense>
+          </KeepAlive>
+        </Transition>
+      </template>
+    </RouterView>
 
   </div>
 

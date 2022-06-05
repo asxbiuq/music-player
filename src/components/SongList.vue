@@ -1,6 +1,5 @@
 <template>
   <div class="song-list w-full">
-
     <div class="overflow-x-auto">
       <table class="table w-full">
         <thead>
