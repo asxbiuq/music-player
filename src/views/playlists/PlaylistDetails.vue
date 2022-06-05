@@ -5,8 +5,8 @@
 
     <div v-if="playlist" class="shell">
 
-      <div class="left flex flex-col items-center">
-        <div class="hero min-h-full bg-base-200">
+      <div class="left flex flex-col items-center ">
+        <div class="hero min-h-full bg-base-200 rounded-xl">
           <div class="hero-content flex flex-col p-10">
             <!-- 用一个容器来占位,防止页面抖动 -->
             <div class="w-72 h-80 overflow-hidden">
@@ -36,10 +36,16 @@
       <router-view class="right" />
 
     </div>
+
+    <div v-else>
+      <SkeletonPlayDetailsVue />
+    </div>
+
   </div>
 </template>
 
 <script setup>
+import SkeletonPlayDetailsVue from "../../components/SkeletonPlayDetails.vue"
 import useStorage from "composables/useStorage"
 import useDocument from "composables/useDocument"
 import getUser from 'composables/getUser'

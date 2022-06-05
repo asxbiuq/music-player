@@ -1,5 +1,5 @@
 <template>
-  <div class="hero  top-40 overflow-none">
+  <!-- <div class="hero  top-40 overflow-none">
     <div class="hero-content  flex flex-row justify-center gap-10">
 
       <div class="overflow-visible">
@@ -16,11 +16,12 @@
       </div>
 
     </div>
-  </div>
-
+  </div> -->
+<SkeletonPlayDetailsVue/>
 </template>
 
 <script setup>
+import SkeletonPlayDetailsVue from "components/SkeletonPlayDetails.vue";
 import { useRouter } from "vue-router";
 const router = useRouter()
 
