@@ -111,4 +111,9 @@ form input[type="file"] {
   font-size: 14px;
   margin: 16px 0;
 }
-
+ /* 强制不换行,溢出隐藏,超出显示省略号*/
+.p {
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden; 
+}  
