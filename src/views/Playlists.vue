@@ -17,7 +17,7 @@
 
               <!-- 加载中状态 -->
               <template #fallback class="bg-black-500">
-                <SkeletonUserPlaylistsVue/>
+                <SkeletonUserPlaylists/>
               </template>
             </Suspense>
           </KeepAlive>
@@ -29,13 +29,6 @@
 
 </template>
 <script setup>
-import Pagination from "../components/Pagination.vue";
-import Navbar from "components/Navbar.vue";
-import PlaylistDetails from "./playlists/PlaylistDetails.vue";
-import UserPlaylists from "./playlists/UserPlaylists.vue";
-import ProfileCard from 'views/ProfileCard.vue'
-import ProfileCardSkeleton from "./ProfileCardSkeleton.vue";
-import SkeletonUserPlaylistsVue from "components/SkeletonUserPlaylists.vue";
 
 </script>
 <style scoped>

@@ -1,11 +1,11 @@
 <template>
     <form @submit.prevent="handleSubmit" class="flex flex-col w-1/3 justify-center items-center self-center">
-        <h4 class="text-black-600 text-2xl font-bold">Create New Playlist</h4>
+        <h4 class="text-black-600 text-2xl font-bold ">Create New Playlist</h4>
         <input class="w-full" type="text" required placeholder="Playlist title" v-model="title">
         <textarea required placeholder="Playlist description..." v-model="description"></textarea>
         <!-- upload playlist image -->
         <label>Upload playlist cover image</label>
-        <input type="file"  @change="handleChange">
+        <input type="file" @change="handleChange">
         <div class="error">{{ fileError }}</div>
         <button class="btn relative left-0 top-2" v-if="!isPending">Create</button>
         <button class="btn relative left-0 top-2" v-else disabled>Saving...</button>
@@ -13,13 +13,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import useStorage from 'composables/useStorage'
-import useCollection from 'composables/useCollection'
-import getUser from 'composables/getUser'
-import { useRouter } from 'vue-router'
 import { Timestamp } from "firebase/firestore"
-import { computed } from '@vue/reactivity'
+
 
 
 const { uploadImage, filePath, isPending: uploadImagePending } = useStorage()
@@ -80,7 +75,7 @@ const handleChange = (e) => {
 
 </script>
 
-<style>
+<style scoped>
 /* input[type="file"] {
     border: 0;
     padding: 0;
@@ -95,4 +90,9 @@ label {
 button {
     margin-top: 20px;
 } */
+@media screen and (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+}
 </style>

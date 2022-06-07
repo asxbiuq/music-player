@@ -11,10 +11,6 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router"
-import { ref } from 'vue'
-import useDocument from 'composables/useDocument'
-import { inject } from 'vue'
 // const props = defineProps({
 //     playlist: Object
 // })

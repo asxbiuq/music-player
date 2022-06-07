@@ -14,11 +14,6 @@
 </template>
 
 <script setup>
-import useSignup from "composables/useSignup"
-import { ref } from "vue"
-import { useRouter } from 'vue-router'
-import useCollection from "../../composables/useCollection";
-
 const { error, signup, isPending } = useSignup()
 const router = useRouter()
 

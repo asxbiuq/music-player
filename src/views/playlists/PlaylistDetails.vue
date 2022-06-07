@@ -3,65 +3,61 @@
 
     <div v-if="error" class="error">{{ error }}</div>
 
-    <div v-if="playlist" class="shell">
+    <div v-if="playlist">
 
-      <div class="left flex flex-col items-center ">
-        <div class="hero min-h-full bg-base-200 rounded-xl">
-          <div class="hero-content flex flex-col p-10">
-            <!-- 用一个容器来占位,防止页面抖动 -->
-            <div class="w-72 h-80 overflow-hidden">
-              <img :src="playlist.coverUrl" class=" shadow-2xl " />
-            </div>
-            <div class="flex flex-col items-center w-72 ">
-              <h1 class="text-5xl font-bold overflow-visible">{{ playlist.title }}</h1>
-              <p class="py-6">{{ playlist.description }}</p>
-              <div class="doubleBtn">
+      <div class="playlistdetails-container">
 
-                <button class=" bg-red-500 btn" @click="handleDelete">Delete Playlist</button>
-
-
-                <div v-if="!isAddSong">
-                  <button @click="handleAddSong" class="btn bg-red-500">Add Song</button>
+        <div class="playlist-info">
+          <div class="left flex flex-col items-center ">
+            <div class="hero min-h-full bg-base-200 rounded-xl">
+              <div class="hero-content flex flex-col overflow-hidden w-full">
+                <!-- 用一个容器来占位,防止页面抖动 -->
+                <div class="w-full h-[50vh] overflow-hidden">
+                  <img :src="playlist.coverUrl" class=" shadow-2xl object-center" />
                 </div>
-                <div v-else>
-                  <button @click="handleSongList" class="btn bg-red-500">Song List</button>
-                </div>
+                <div class="flex flex-col items-center w-72 ">
+                  <h1 class="text-5xl font-bold overflow-visible">{{ playlist.title }}</h1>
+                  <div class="overflow-hidden">
 
+                    <p class="py-6">{{ playlist.description }}</p>
+                  </div>
+                  <div class="doubleBtn">
+
+                    <button class=" bg-red-500 btn" @click="handleDelete">Delete Playlist</button>
+
+
+                    <div v-if="!isAddSong">
+                      <button @click="handleAddSong" class="btn bg-red-500">Add Song</button>
+                    </div>
+                    <div v-else>
+                      <button @click="handleSongList" class="btn bg-red-500">Song List</button>
+                    </div>
+
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <router-view class="right" />
+        </div>
+
+
+        <router-view class="right songlist-songadd" />
+
+
+      </div>
 
     </div>
 
     <div v-else>
-      <SkeletonPlayDetailsVue />
+      <SkeletonPlayDetails />
     </div>
 
   </div>
 </template>
 
 <script setup>
-import SkeletonPlayDetailsVue from "../../components/SkeletonPlayDetails.vue"
-import useStorage from "composables/useStorage"
-import useDocument from "composables/useDocument"
-import getUser from 'composables/getUser'
-import { computed } from '@vue/runtime-core'
-import { useRouter } from "vue-router"
-import AddSong from "components/AddSong.vue"
-import SongList from "components/SongList.vue"
-import { ref, provide } from 'vue'
-import { watchEffect } from "vue";
-import { onActivated } from "vue"
-import { defineProps } from "vue"
-import { reactive } from "vue"
-import { onUpdated } from "vue"
-import { onBeforeMount } from "vue"
-import { onBeforeUpdate } from "vue"
-import { onMounted } from "vue"
+
 
 
 const isAddSong = ref(false)
@@ -118,7 +114,7 @@ provide('playlist', playlist)
 </script>
 
 <style scoped>
-.shell {
+.playlistdetails-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 0fr;
@@ -128,6 +124,8 @@ provide('playlist', playlist)
     "left right right"
     "left right right"
     /* ". . ."; */
+
+
 }
 
 .left {
@@ -136,11 +134,48 @@ provide('playlist', playlist)
 
 .right {
   grid-area: right;
+  height: 85vh;
+  overflow: auto;
 }
 
 .doubleBtn {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 900px) {
+  .playlistdetails-container {
+    display: grid;
+    grid-template-columns: 0.7fr 0.7fr 1.1fr;
+    grid-template-rows: 0fr 2.4fr 0.4fr;
+    gap: 1em 0em;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "playlist-info playlist-info playlist-info"
+      "songlist-songadd songlist-songadd songlist-songadd"
+      ". . .";
+  }
+
+  .playlist-info {
+    grid-area: playlist-info;
+  }
+
+  .songlist-songadd {
+    grid-area: songlist-songadd;
+
+  }
+
+  .hero-content {
+    padding: 1rem;
+  }
+
+  .right {
+    overflow: visible;
+  }
+  img{
+    width: 100%;
+    object-position: center;
+  }
 }
 </style>

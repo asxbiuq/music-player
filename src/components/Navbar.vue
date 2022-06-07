@@ -24,9 +24,7 @@
 </template>
 
 <script setup>
-import useLogout from "composables/useLogout"
-import { useRouter } from "vue-router"
-import getUser from "composables/getUser"
+
 
 
 const { logout } = useLogout()
@@ -51,7 +49,7 @@ const handleClick = async () => {
 }
 .btn-nar {
   /* font-size: 2vw; */
-  font-size: 80%;
+  font-size: 100%;
   flex-shrink:1
 }
 </style>

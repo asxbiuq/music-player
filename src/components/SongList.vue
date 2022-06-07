@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { inject } from 'vue'
+
 
 let row = 1
 const playlist = inject('playlist')
