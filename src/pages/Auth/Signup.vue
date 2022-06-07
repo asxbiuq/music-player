@@ -25,12 +25,12 @@ const displayName = ref('')
 const handleSubmit = async () => {
     const res = await signup(email.value, password.value)
     if (!error.value) {
-        router.push({ name: 'UserPlaylists' })
+        router.push({ name: 'Playlists-UserPlaylists' })
     }
 }
 
 const handleLogin = () => {
-    router.push({ name: 'Login' })
+    router.push({ name: 'Auth-Login' })
 }
 </script>
 

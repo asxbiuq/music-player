@@ -29,7 +29,7 @@ const router = useRouter()
 const handleClick = () => {
 
   router.push({
-    name: 'Auth'
+    name: 'Auth-Login'
   })
 }
 

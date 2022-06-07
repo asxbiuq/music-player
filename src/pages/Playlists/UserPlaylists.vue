@@ -24,7 +24,7 @@
 
         <!-- createPlaylistBtn -->
         <div class="createPlaylistBtn overflow-visible">
-            <router-link :to="{ name: 'CreatePlaylist' }" class="btn  bg-red-500">Create a new
+            <router-link :to="{ name: 'Playlists-CreatePlaylist' }" class="btn  bg-red-500">Create a new
                 Playlist</router-link>
         </div>
 

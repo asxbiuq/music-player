@@ -8,26 +8,6 @@ import { getDocs } from "firebase/firestore";
 
 
 
-//col为集合  
-//que为查询条件 如['userId', '==', user.value.uid]
-//orderBy为排序属性,默认为createdAt
-const getDoc = async (col, que, orderBy = 'createdAt') => {
-
-    const data = reactive([])
-
-    const q = query(collection(db, col), where(...que), orderBy(orderBy));
-
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        // console.log(doc.id, " => ", doc.data());
-        playlists.push({ ...doc.data(), id: doc.id })
-    })
-    //返回reactive类型数据
-    return data
-}
-
-
 
 const getCollection = (col, que) => {
     let documents = reactive({})
@@ -64,5 +44,5 @@ const getCollection = (col, que) => {
     return { documents, error }
 }
 
-export { getCollection, getDoc }
+
 export default getCollection

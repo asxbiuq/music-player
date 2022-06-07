@@ -27,11 +27,11 @@ const password = ref('')
 const handleSubmit = async () => {
     const res = await login(email.value, password.value)
     if (!error.value) {
-        router.push({ name: 'UserPlaylists' })
+        router.push({ name: 'Playlists-UserPlaylists' })
     }
 }
 const handleSignup = () => {
-    router.push({ name: 'Signup' })
+    router.push({ name: 'Auth-Signup' })
 }
 </script>
 

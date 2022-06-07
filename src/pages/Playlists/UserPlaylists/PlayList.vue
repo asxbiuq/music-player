@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="{ name: 'PlaylistDetails', params: { id: id } }" class="flex justify-center ">
+    <router-link :to="{ name: 'Playlists-PlaylistDetails', params: { id: id } }" class="flex justify-center ">
       <div class="list-style border border-blue-300 shadow rounded-md p-4 max-w-6xl  flex gap-2 justify-between w-[90%] h-[15vh]  justify-content">
         <!-- image -->
         <div class="list-image  rounded-full bg-slate-200  overflow-hidden">

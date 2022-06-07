@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import Pages from 'vite-plugin-pages'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -78,7 +79,7 @@ export default defineConfig({
     }),
     Components({
       // relative paths to the directory to search for components.
-      dirs: ['src/components','src/views'],
+      dirs: ['src/components','src/views','src/pages'],
     
       // valid file extensions for components.
       extensions: ['vue'],
@@ -114,6 +115,10 @@ export default defineConfig({
       include: [/\.vue$/, /\.vue\?vue/],
       exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
     }),
+    Pages({
+      dirs: 'src/pages',  // File directory where routing needs to be generated
+      exclude: ['**/components/*.vue']  // Excluded directories, i.e. the directories under all components directories are not included vue file generation route
+  }),
   ],
   resolve: {
     alias: {

@@ -4,16 +4,16 @@
     <div class="shell">
       <div class="image img "></div>
       <div class="auth form bg-slate-400 overflow-hidden">
-        <Transition name="form">
+        <!-- <Transition name="form">
           <router-view class="bg-gray h-full" />
-        </Transition>
+        </Transition> -->
         <!-- 由于<router-view> can no longer be used directly inside <transition> or <keep-alive>.改写为:-->
 
-          <!-- <router-view v-slot="{ Component }" class="bg-gray">
+          <router-view v-slot="{ Component }" class="bg-gray h-full">
             <transition name="form">
               <component :is="Component" />
             </transition>
-          </router-view> -->
+          </router-view>
 
       </div>
     </div>

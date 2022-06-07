@@ -93,7 +93,7 @@ const handleDelete = async () => {
   await deleteImage(playlist.value.filePath)
   // 这里不用传参, 因为调用 useDocument() 时已经传参,并生成 docRef 对象了
   await deleteDoc()
-  router.push({ name: 'UserPlaylists' })
+  router.push({ name: 'Playlists-UserPlaylists' })
 }
 
 const handleClick = async (id) => {
@@ -103,11 +103,11 @@ const handleClick = async (id) => {
 }
 const handleAddSong = () => {
   isAddSong.value = !isAddSong.value
-  router.push({ name: 'AddSong' })
+  router.push({ name: 'Playlists-PlaylistDetails-AddSong' })
 }
 const handleSongList = () => {
   isAddSong.value = !isAddSong.value
-  router.push({ name: 'SongList' })
+  router.push({ name: 'Playlists-PlaylistDetails-SongList' })
 }
 
 provide('playlist', playlist)

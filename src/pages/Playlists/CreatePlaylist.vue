@@ -53,7 +53,7 @@ const handleSubmit = async () => {
             createdAt: Timestamp.fromDate(new Date())
         });
         if (!error.value) {
-            router.push({ name: 'UserPlaylists' })
+            router.push({ name: 'Playlists-UserPlaylists' })
         }
     }
 }
