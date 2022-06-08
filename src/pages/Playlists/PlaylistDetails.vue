@@ -55,10 +55,11 @@
 
   </div>
 </template>
+
 <route lang="yaml">
 {
   meta: {
-    layout: "playlists",
+    layout: "playlistDetail",
   }
 }
 </route>

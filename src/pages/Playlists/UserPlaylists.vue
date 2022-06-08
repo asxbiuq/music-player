@@ -35,14 +35,7 @@
 
     </div>
 </template>
-<route>
-{
-  meta: {
-    layout: "default",
-    title: '我是测试的meta.title信息'
-  }
-}
-</route>
+
 
 <script setup>
 import { db } from "../../firebase/config";

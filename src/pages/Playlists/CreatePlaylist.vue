@@ -11,13 +11,8 @@
         <button class="btn relative left-0 top-2" v-else disabled>Saving...</button>
     </form>
 </template>
-<route lang="yaml">
-{
-  meta: {
-    layout: "playlists",
-  }
-}
-</route>
+
+
 
 <script setup>
 import { Timestamp } from "firebase/firestore"
