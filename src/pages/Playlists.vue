@@ -4,7 +4,8 @@
 <route>
 {
   meta: {
-    layout: "default"
+    layout: "playlists",
+    title: '我是测试的meta.title信息'
   }
 }
 </route>

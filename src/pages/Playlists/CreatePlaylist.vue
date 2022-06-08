@@ -11,6 +11,14 @@
         <button class="btn relative left-0 top-2" v-else disabled>Saving...</button>
     </form>
 </template>
+<route>
+{
+  meta: {
+    layout: "default",
+    title: '我是测试的meta.title信息'
+  }
+}
+</route>
 
 <script setup>
 import { Timestamp } from "firebase/firestore"
