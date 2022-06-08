@@ -5,6 +5,10 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
+import {
+  ElementPlusResolver,
+  HeadlessUiResolver,
+} from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -87,7 +91,10 @@ export default defineConfig({
       // search for subdirectories
       deep: true,
       // resolvers for custom components
-      resolvers: [],
+      resolvers: [
+        ElementPlusResolver(),
+        HeadlessUiResolver(),
+      ],
 
       // generate `components.d.ts` global declarations,
       // also accepts a path for custom filename
