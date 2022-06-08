@@ -1,12 +1,6 @@
 <template>
-<div>
-  <!-- title: {{title}} -->
-</div>
   <div class="playlist h-full flex-col gap-2">
-
-
-    <!-- Playlists -->
-    
+    <Navbar />
     <RouterView v-slot="{ Component, route }">
       <template v-if="Component">
           <!-- 防止页面数据不更新,排除 PlaylistDetails组件,这里与Page插件不兼容!!!!!!名字还是PlaylistDetails -->
@@ -25,10 +19,4 @@
     </RouterView>
   </div>
 </template>
-
-
-<script setup>
-// import  {  useRouter  }  from  'vue-router' 
-// const title = useRouter().currentRoute.value.meta.title
-</script>
 

@@ -55,11 +55,10 @@
 
   </div>
 </template>
-<route>
+<route lang="yaml">
 {
   meta: {
-    layout: "default",
-    title: '我是测试的meta.title信息'
+    layout: "playlists",
   }
 }
 </route>

@@ -1,13 +1,10 @@
 <template>
-  <!-- 导航栏 -->
-  <Navbar />
   <router-view />
 </template>
-<route>
+<route lang="yaml">
 {
   meta: {
     layout: "playlists",
-    title: '我是测试的meta.title信息'
   }
 }
 </route>

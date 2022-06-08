@@ -88,7 +88,10 @@ const handlePagePre = () => {
     }
 }
 </script>
-
-<style scoped>
-
-</style>
+<route lang="yaml">
+{
+  meta: {
+    layout: "playlists",
+  }
+}
+</route>
