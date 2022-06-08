@@ -1,4 +1,6 @@
 <template>
+  <!-- 导航栏 -->
+  <Navbar />
   <router-view />
 </template>
 <route>

@@ -3,8 +3,7 @@
   <!-- title: {{title}} -->
 </div>
   <div class="playlist h-full flex-col gap-2">
-    <!-- 导航栏 -->
-    <Navbar />
+
 
     <!-- Playlists -->
     

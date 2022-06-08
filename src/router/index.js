@@ -14,7 +14,7 @@ router.beforeEach((to, from, next) => {
   if (
     to.name !== 'Auth-Login' &&
     to.name !== 'Auth-Signup' &&
-    to.path == '/' &&
+    to.name == '/' &&
     !auth.currentUser
   ) {
     next({ name: 'Auth-Login' })
