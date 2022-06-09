@@ -68,57 +68,57 @@
 
 
 
-const isAddSong = ref(false)
+const isAddSong = $ref(false)
 
 let row = 1
-const playlist = ref('')
-const { user } = getUser()
+const playlist = $ref('')
+const { user } = $(getUser())
 const props = defineProps({
   id: String,
 })
 
 console.log(props.id)
 
-const { error, deleteDoc, updateDoc, getDocData } = useDocument('playlists', props.id)//这里的id是playlistId
-const { deleteImage } = useStorage()
+const { error, deleteDoc, updateDoc, getDocData } = $(useDocument('playlists', props.id))//这里的id是playlistId
+const { deleteImage } = $(useStorage())
 
 const getPlaylist = (async () => {
-  const { docData } = await getDocData()
-  playlist.value = docData.value
-
+  const { docData } = $(await getDocData())
+  playlist = reactive({ ...docData })
+  console.log(playlist)
 })()
 
 
 const router = useRouter()
 
 // 判断当前用户是否有播放列表的权限
-const ownership = computed(() => {
-  return playlist.value && user.value && user.value.uid == playlist.value.userId
+const ownership = $computed(() => {
+  return playlist && user && user.uid == playlist.userId
 })
 
 const handleDelete = async () => {
-  console.log(playlist.value.filePath)
-  await deleteImage(playlist.value.filePath)
+  console.log(playlist.filePath)
+  await deleteImage(playlist.filePath)
   // 这里不用传参, 因为调用 useDocument() 时已经传参,并生成 docRef 对象了
   await deleteDoc()
   router.push({ name: 'Playlists-UserPlaylists' })
 }
 
 const handleClick = async (id) => {
-  const songs = playlist.value.songs.filter((song) => song.id != id)
+  const songs = $(playlist.songs.filter((song) => song.id != id))
   // 简写
   await updateDoc({ songs })
 }
 const handleAddSong = () => {
-  isAddSong.value = !isAddSong.value
+  isAddSong = !isAddSong
   router.push({ name: 'Playlists-PlaylistDetails-AddSong' })
 }
 const handleSongList = () => {
-  isAddSong.value = !isAddSong.value
+  isAddSong = !isAddSong
   router.push({ name: 'Playlists-PlaylistDetails-SongList' })
 }
 
-provide('playlist', playlist)
+provide('playlist', $$(playlist))
 </script>
 
 <style scoped>

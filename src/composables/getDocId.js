@@ -8,14 +8,14 @@ import { auth } from '../firebase/config'
 const getDocId = () => {
   try {
     // refs
-    const user = ref(auth.currentUser)
+    const user = $ref(auth.currentUser)
 
     // 监听用户身份更改变换
     auth.onAuthStateChanged(_user => {
-      user.value = _user
+      user = _user
     });
 
-    const uid = user.value.uid
+    const uid = user.uid
     // 这里docId 等于 uid ,仅限本项目
     const docId = uid
     console.log("docId: ", docId)

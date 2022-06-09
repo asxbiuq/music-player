@@ -14,17 +14,17 @@
 </template>
 
 <script setup>
-const { error, signup, isPending } = useSignup()
+const { error, signup, isPending } = $(useSignup())
 const router = useRouter()
 
 
-const email = ref('')
-const password = ref('')
-const displayName = ref('')
+const email = $ref('')
+const password = $ref('')
+// const displayName = $ref('')
 
 const handleSubmit = async () => {
-    const res = await signup(email.value, password.value)
-    if (!error.value) {
+    const res = await signup(email, password)
+    if (!error) {
         router.push({ name: 'Playlists-UserPlaylists' })
     }
 }

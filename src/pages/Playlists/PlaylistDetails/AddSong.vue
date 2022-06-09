@@ -11,35 +11,30 @@
 </template>
 
 <script setup>
-// const props = defineProps({
-//     playlist: Object
-// })
-
-
 const playlist = inject('playlist')
 
 console.log('playlist:', playlist)
-const title = ref('')
-const artist = ref('')
-const showForm = ref(false)
+const title = $ref('')
+const artist = $ref('')
+// const showForm = $ref(false)
 const { updateDoc } = useDocument()
 const router = useRouter()
 const handleSubmit = async () => {
     const newSong = {
-        title: title.value,
-        artist: artist.value,
+        title: title,
+        artist: artist,
         id: Math.floor(Math.random() * 100000000)
     }
     // 上传数据
-    await updateDoc(playlist.value.playlistId.toString(), {
-        songs: [...playlist.value.songs, newSong]
+    await updateDoc(playlist.playlistId.toString(), {
+        songs: [...playlist.songs, newSong]
     })
     // 更新本地的数据
-    playlist.value.songs.push(newSong)
-    // console.log(playlist.value)
+    playlist.songs.push(newSong)
+    // console.log(playlist)
     // 清空表格里的数据
-    title.value = ''
-    artist.value = ''
+    title = ''
+    artist = ''
 
     router.push({ name: 'SongList' })
 }

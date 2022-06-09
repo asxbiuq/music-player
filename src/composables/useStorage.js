@@ -5,67 +5,72 @@ import { uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from '../firebase/config';
 import { getStorage, ref as fireRef, deleteObject } from "firebase/storage";
-const { user } = getUser()
+
+
+const { user } = $(getUser())
 
 const useStorage = () => {
-    const error = ref(null)
-    let url = ref(null)
-    const filePath = ref(null)
-    const isPending = ref(false)
+    const error = $ref(null)
+    // let url = $ref(null)
+    const filePath = $ref(null)
+    const isPending = $ref(false)
 
     const uploadImage = async (file) => {
-        isPending.value = true
-        filePath.value = `covers/${user.value.uid}/${file.name}`
-        const storageRef = fireRef(storage, filePath.value);
+        isPending = true
+        filePath = `covers/${user.uid}/${file.name}`
+        const storageRef = fireRef(storage, filePath);
         try {
             //需要先上传,所以这里需要阻塞以下
             await uploadBytes(storageRef, file)
                 .then((snapshot) => {
                     console.log('Uploaded file!')
                 })
-            url = await getDownloadURL(storageRef)
+            const url = $(await getDownloadURL(storageRef)
                 .then(url => {
+                    console.log('Gated Uploaded file Url: ',url)
                     return url
-                })
-            error.value = null
-            isPending.value = false
-            return url
+                }))
+            error = null
+            isPending = false
+            // return url
+            return $$({ url })
         } catch (err) {
             console.log(err.message)
-            error.value = err
+            error = err
         }
+        
     }
 
     const deleteImage = async (filePath) => {
-        isPending.value = true
-        // filePath.value = `covers/${user.value.uid}/${file.name}`
+        isPending = true
+        // filePath = `covers/${user.uid}/${file.name}`
         const desertRef = fireRef(storage, filePath);
         // Delete the file
         deleteObject(desertRef).then(() => {
             // File deleted successfully
 
-            console.log(filePath," is delete success")
-            error.value = null
-            isPending.value = false
+            console.log(filePath, " is delete success")
+            error = null
+            isPending = false
         }).catch((err) => {
             // Uh-oh, an error occurred!
             console.log(err.message)
-            error.value = err.message
+            error = err.message
         });
         // try {
         //     await deleteDoc(doc(db, col, doc));
 
-        //     error.value = null
-        //     isPending.value = false
+        //     error = null
+        //     isPending = false
         // } catch (err) {
         //     console.log(err.message)
-        //     error.value = err.message
+        //     error = err.message
         // }
     }
 
 
 
-    return { url, filePath, error, uploadImage, deleteImage, isPending }
+    return $$({  filePath, error, uploadImage, deleteImage, isPending })
 }
 
 export default useStorage

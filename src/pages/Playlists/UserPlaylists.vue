@@ -42,11 +42,12 @@ import { db } from "../../firebase/config";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 
-const { user } = getUser()
-
+const { user } = $(getUser())
+// 虽然这里用了$语法糖,但是这数据要传入firebase,$语法糖只能用来赋值,数据本身还是要用.value来访问
+// const uid = user.uid
 // 获取数据
 // 这里要await,不然会报错 getDoc是一个用async声明的异步函数
-const { data: playlists, error } = await getDoc('playlists', ['userId', '==', user.value.uid])
+const { data: playlists, error } = $(await getDoc('playlists', ['userId', '==', user.uid]))
 console.log('playlists', playlists)
 // console.log(data,error)
 
@@ -54,16 +55,16 @@ console.log('playlists', playlists)
 let pageIndex = $ref(1)
 
 // 展示页的数据
-const showLists = computed(() => {
+const showLists = $computed(() => {
     return playlists.slice((pageIndex - 1) * 5, (pageIndex) * 5)
 })
-// console.log(showList.value)
-const maxPageNum = computed(() => {
+// console.log(showList)
+const maxPageNum = $computed(() => {
     return Math.ceil(playlists.length / 5)
 })
-// console.log(maxPageNum.value)
+// console.log(maxPageNum)
 const handlePageNext = () => {
-    if (pageIndex >= maxPageNum.value) {
+    if (pageIndex >= maxPageNum) {
         console.log('The last page!')
         return
     } else {

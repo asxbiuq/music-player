@@ -6,12 +6,12 @@ import { query, where, orderBy } from "firebase/firestore";
 import { getDocs } from "firebase/firestore";
 
 //col为集合
-//que为查询条件 如['userId', '==', user.value.uid]
+//que为查询条件 如['userId', '==', user.uid]
 //orderBy为排序属性,默认为createdAt
 const getDoc = async (col, que, order = 'createdAt') => {
 
   const data = reactive([])
-  const error = ref(null)
+  const error = $ref(null)
 
   try {
     const q = query(collection(db, col), where(...que), orderBy(order));
@@ -21,11 +21,11 @@ const getDoc = async (col, que, order = 'createdAt') => {
       // doc.data() is never undefined for query doc snapshots
       // console.log(doc.id, " => ", doc.data());
       data.push({ ...doc.data(), id: doc.id })
-      error.value = null
+      error = null
     })
   } catch (err) {
     console.log(err)
-    error.value = 'could not fetch data (getDoc.js)'
+    error = 'could not fetch data (getDoc.js)'
   }
 
   // 追踪Snapshot状态和依赖,在其变更时关闭并重新运行
@@ -35,7 +35,7 @@ const getDoc = async (col, que, order = 'createdAt') => {
 
   //返回reactive类型数据
   // console.log(data)
-  return { data, error }
+  return $$({ data, error })
 }
 
 

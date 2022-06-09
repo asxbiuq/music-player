@@ -19,20 +19,20 @@ import { Timestamp } from "firebase/firestore"
 
 
 
-const { uploadImage, filePath, isPending: uploadImagePending } = useStorage()
-const { error, addDoc, isPending: addDocPending } = useCollection('playlists')
-const { user } = getUser()
+const { uploadImage, filePath, isPending: uploadImagePending } = $(useStorage())
+const { error, addDoc, isPending: addDocPending } = $(useCollection('playlists'))
+const { user } = $(getUser())
 const router = useRouter()
-const uid = user.uid;
-const title = ref('')
-const playlistsName = ref('')
-const description = ref('')
-const file = ref(null)
-const fileError = ref(null)
-const playlist = ref('')
-const isPending = computed(() => {
+// const uid = user.uid;
+const title = $ref('')
+// const playlistsName = $ref('')
+const description = $ref('')
+const file = $ref(null)
+const fileError = $ref(null)
+const playlist = $ref('')
+const isPending = $computed(() => {
     // isPending = uploadImagePending && addDocPending
-    if (uploadImagePending.value | addDocPending.value) {
+    if (uploadImagePending | addDocPending) {
         return true
     } else {
         return false
@@ -42,19 +42,20 @@ const isPending = computed(() => {
 
 
 const handleSubmit = async () => {
-    if (file.value) {
-        const url = await uploadImage(file.value)
+    if (file) {
+        const { url } = $(await uploadImage(file))
+        console.log(url)
         await addDoc({
-            title: title.value,
-            description: description.value,
-            userId: user.value.uid,
-            userName: user.value.displayName,
+            title: title,
+            description: description,
+            userId: user.uid,
+            userName: user.displayName,
             coverUrl: url,
-            filePath: filePath.value,
+            filePath: filePath,
             songs: [],
             createdAt: Timestamp.fromDate(new Date())
         });
-        if (!error.value) {
+        if (!error) {
             router.push({ name: 'Playlists-UserPlaylists' })
         }
     }
@@ -67,11 +68,11 @@ const handleChange = (e) => {
     console.log(selected)
 
     if (selected && types.includes(selected.type)) {
-        file.value = selected
-        fileError.value = null
+        file = selected
+        fileError = null
     } else {
-        file.value = null
-        fileError.value = 'Please select an image file (png or jpg)'
+        file = null
+        fileError = 'Please select an image file (png or jpg)'
     }
 }
 

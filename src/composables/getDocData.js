@@ -12,21 +12,21 @@ const getDocData = async (col, docId) => {
 
     const docSnap = await getDoc(docRef);
 
-    const docData = ref(null)
-    const error = ref(null)
+    const docData = $ref(null)
+    const error = $ref(null)
 
     if (docSnap.exists()) {
-        docData.value = docSnap.data()
-        console.log('docData:', docData.value)
+        docData = docSnap.data()
+        console.log('docData:', docData)
     } else {
         // doc.data() will be undefined in this case
-        error.value = 'that document does not exist'
+        error = 'that document does not exist'
         console.log("No such document!");
     }
 
 
 
-    return { docData, error }
+    return $$({ docData, error })
 
 }
 

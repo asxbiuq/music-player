@@ -11,7 +11,7 @@ import { getDocs } from "firebase/firestore";
 
 const getCollection = (col, que) => {
     let documents = reactive({})
-    const error = ref(null)
+    const error = $ref(null)
     let colRef = collection(db, col)
     // .orderBy('createdAt')
 
@@ -29,11 +29,11 @@ const getCollection = (col, que) => {
         })
         documents = results
         console.log('documents: ', documents)
-        error.value = null
+        error = null
     }, (err) => {
         console.log(err.message)
-        documents.value = null
-        error.value = 'could not fetch data'
+        documents = null
+        error = 'could not fetch data'
     })
 
     // 追踪Snapshot状态和依赖,在其变更时关闭并重新运行,这样可以防止内存溢出
@@ -41,7 +41,7 @@ const getCollection = (col, que) => {
         onInvalidate(() => unsub())
     })
 
-    return { documents, error }
+    return $$({ documents, error })
 }
 
 

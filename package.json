@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.6.4",
+    "@vueuse/components": "^8.6.0",
+    "@vueuse/core": "^8.6.0",
+    "@vueuse/shared": "^8.6.0",
     "animate.css": "^4.1.1",
     "daisyui": "^2.15.1",
     "element-plus": "^2.2.5",

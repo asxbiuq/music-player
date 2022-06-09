@@ -8,42 +8,42 @@ import { getDoc } from "firebase/firestore";
 
 const useCollection = (col) => {
   // 因为我们可能会使用多个集合,所以生成一个全局的error没有意义,需要每次都生成一个
-  let error = ref(null)
-  const isPending = ref(false)
+  let error = $ref(null)
+  const isPending = $ref(false)
 
   const addDoc = async (docData) => {
-    error.value = null
-    isPending.value = true
+    error = null
+    isPending = true
 
     try {
       const auth = getAuth()
-      const { user } = getUser()
-      // 注意要.value!!!!!!
+      const { user } = $(getUser())
 
-      console.log('uid', user.value.uid)
+
+      console.log('uid', user.uid)
       const playlist = Math.floor(Math.random() * 1000000000000000).toString()
       console.log('playlist:', playlist)
 
       // await addDocRaw(collection(db, col), { ...docData, playlistId: playlist })
       await setDoc(doc(db, col, playlist),{ ...docData, playlistId: playlist })
       await addDocRaw(collection(db, 'users'), {
-        userId: user.value.uid,
+        userId: user.uid,
         playlistId: [playlist]
       })
       // 向playlists里添加playlist
-      // await setDoc(doc(db, col, user.value.uid), docData)
+      // await setDoc(doc(db, col, user.uid), docData)
       //并将该playlist添加到users里
-      // await setDoc(doc(db, 'users', user.value.uid), {
-      //   userId: user.value.uid,
+      // await setDoc(doc(db, 'users', user.uid), {
+      //   userId: user.uid,
       //   playlist: [playlist]
       // })
 
-      isPending.value = false
+      isPending = false
     }
     catch (err) {
       console.log(err.message)
-      error.value = 'could not send the message'
-      isPending.value = false
+      error = 'could not send the message'
+      isPending = false
     }
   }
   const getDoc = async () => {
@@ -56,7 +56,7 @@ const useCollection = (col) => {
     return docSnap
   }
 
-  return { error, addDoc, isPending, getDoc }
+  return $$({ error, addDoc, isPending, getDoc })
 }
 
 export default useCollection

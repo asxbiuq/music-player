@@ -18,15 +18,15 @@
 </template>
 
 <script setup>
-const { error, login, isPending } = useLogin()
+const { error, login, isPending } = $(useLogin())
 const router = useRouter()
 
-const email = ref('')
-const password = ref('')
+const email = $ref('')
+const password = $ref('')
 
 const handleSubmit = async () => {
-    const res = await login(email.value, password.value)
-    if (!error.value) {
+    const res = await login(email, password)
+    if (!error) {
         router.push({ name: 'Playlists-UserPlaylists' })
     }
 }
