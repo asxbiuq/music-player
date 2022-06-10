@@ -43,7 +43,7 @@
 
 
         <loading v-if="isPending"></loading>
-        <router-view class="right songlist-songadd" />
+        <router-view class="right songlist-songadd" @addedSong="isAddSong=!isAddSong"/>
 
 
       </div>

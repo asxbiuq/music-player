@@ -18,6 +18,7 @@
 
 <script setup>
 const playlist = $(inject('playlist'))
+const emits = defineEmits(['addedSong'])
 
 console.log('playlist:', playlist)
 const title = $ref('')
@@ -41,7 +42,7 @@ const handleSubmit = async () => {
     // 清空表格里的数据
     title = ''
     artist = ''
-
+    emits('addedSong')
     router.push({ name: 'Playlists-PlaylistDetails-SongList' })
 }
 </script>
