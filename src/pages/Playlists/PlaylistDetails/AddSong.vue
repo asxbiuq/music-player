@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-const playlist = inject('playlist')
+const playlist = $(inject('playlist'))
 
 console.log('playlist:', playlist)
 const title = $ref('')
@@ -36,7 +36,7 @@ const handleSubmit = async () => {
     title = ''
     artist = ''
 
-    router.push({ name: 'SongList' })
+    router.push({ name: 'Playlists-PlaylistDetails-SongList' })
 }
 </script>
 

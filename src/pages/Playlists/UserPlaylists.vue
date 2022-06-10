@@ -43,9 +43,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 
 
 const { user } = $(getUser())
-// 虽然这里用了$语法糖,但是这数据要传入firebase,$语法糖只能用来赋值,数据本身还是要用.value来访问
-// const uid = user.uid
-// 获取数据
+
 // 这里要await,不然会报错 getDoc是一个用async声明的异步函数
 const { data: playlists, error } = $(await getDoc('playlists', ['userId', '==', user.uid]))
 console.log('playlists', playlists)
