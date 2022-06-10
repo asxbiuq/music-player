@@ -33,6 +33,16 @@ const { uploadMusic, filePath, isPending : MusicPending } = $(useStorage())
 const { updateDoc, isPending : docPending } = useDocument()
 const router = useRouter()
 
+const isPending = $computed(() => {
+    // isPending = uploadImagePending && addDocPending
+    if (MusicPending | docPending) {
+        return true
+    } else {
+        return false
+    }
+
+})
+
 const handleSubmit = async () => {
     const { url } = $(await uploadMusic(file))
     const newSong = {

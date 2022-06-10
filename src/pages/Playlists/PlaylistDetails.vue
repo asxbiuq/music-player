@@ -160,7 +160,7 @@ provide('playlist', $$(playlist))
 
 .right {
   grid-area: right;
-  height: 85vh;
+  height: 78.5vh;
   overflow: auto;
 }
 

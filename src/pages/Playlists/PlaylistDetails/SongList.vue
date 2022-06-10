@@ -1,5 +1,5 @@
 <template>
-  <div class="song-list w-full">
+  <div class="song-list w-full flex justify-between flex-col">
     <div class="overflow-x-auto">
       <table class="table w-full">
         <thead>
@@ -13,41 +13,67 @@
         </thead>
 
         <tbody v-for="(song, key) in playlist.songs" class="single-song " :key="song.id">
-          <tr class="hover">
+          <tr class="hover" @dblclick="playMusic(song.id)">
             <th>{{ key + 1 }}</th>
             <td>{{ song.title }}</td>
             <th></th>
             <td>{{ song.artist }}</td>
-            <td @click="confirmDelete(song.id)" class="flex justify-center"><div class="btn-normal border-0">删除</div></td>
+            <td @click="confirmDelete(song.id)" class="flex justify-center">
+              <div class="btn-normal border-0">删除</div>
+            </td>
           </tr>
         </tbody>
       </table>
 
 
 
-
     </div>
-    <confirm 
-      @confirm="handleDelete" 
-      @cancel="isModelOpen = !isModelOpen" 
-      text="是否删除该歌曲" 
-      confirmBtnText="确认" 
-      :isModelOpen="isModelOpen" 
-  />
 
-    <loading v-if="isPending"></loading>
+    <audio 
+      ref="audioPlayer" 
+      :src="url" 
+      controls 
+      id="bgMusic" 
+      @canplay="canplay"
+      class="w-full"
+    ></audio>
     
+    <confirm @confirm="handleDelete" @cancel="isModelOpen = !isModelOpen" text="是否删除该歌曲" confirmBtnText="确认"
+      :isModelOpen="isModelOpen" />
+
+    <loading v-if="audioIsPending"></loading>
+
   </div>
 </template>
 
 <script setup>
-const confirmedSongId = $ref(null)
 const playlist = $(inject('playlist'))
+var audio = document.getElementById("bgMusic");
+console.log(audio)
+const confirmedSongId = $ref(null)
 const isModelOpen = $ref(false)
+const audioPlayer = ref()
+const url = $ref('')
+const audioIsPending = $ref(false)
 // const playlist = inject('playlist')
 
-// console.log('playlist: ', playlist.value)
+console.log('playlist: ', playlist.songs)
+console.log(audioPlayer)
 
+const playMusic = (songId) => {
+  audioIsPending = true
+  audioPlayer.value.pause()
+  console.log(songId)
+  let songNeeded = playlist.songs.find(song => song.id === songId)
+  console.log(songNeeded)
+  url = songNeeded.musicUrl
+  console.log(url)
+}
+
+const canplay = () => {
+  audioIsPending = false
+  audioPlayer.value.play()
+}
 
 const { updateDoc, isPending } = useDocument()
 
