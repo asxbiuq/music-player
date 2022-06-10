@@ -6,19 +6,25 @@
           <tr>
             <th></th>
             <th>歌名</th>
+            <th></th>
             <th>歌手</th>
-            <th>删除</th>
+            <th></th>
           </tr>
         </thead>
-        <tbody v-for="(song,key) in playlist.songs" class="single-song" :key="song.id">
+
+        <tbody v-for="(song, key) in playlist.songs" class="single-song " :key="song.id">
           <tr class="hover">
-            <th>{{ key+1 }}</th>
+            <th>{{ key + 1 }}</th>
             <td>{{ song.title }}</td>
+            <th></th>
             <td>{{ song.artist }}</td>
-            <td @click="handleClick(song.id)">delete</td>
+            <td @click="handleClick(song.id)" class="flex justify-center"><div class="btn-normal border-0">删除</div></td>
           </tr>
         </tbody>
       </table>
+
+      <loading v-if="isPending"></loading>
+
     </div>
   </div>
 </template>
@@ -32,19 +38,20 @@ const playlist = $(inject('playlist'))
 // console.log('playlist: ', playlist.value)
 
 
-const { updateDoc } = useDocument()
+const { updateDoc, isPending } = useDocument()
 
 
 const handleClick = async (songId) => {
-  console.log('oldSongs',playlist.songs)
+
+  console.log('oldSongs', playlist.songs)
   const newSongs = playlist.songs.filter(x => x.id !== songId)
-  console.log('newSongs',newSongs)
+  console.log('newSongs', newSongs)
   // 更新本地数据
   playlist.songs = [...newSongs]
   // 更新云端数据
   await updateDoc(playlist.playlistId.toString(), {
-        songs: [...newSongs]
-    })
+    songs: [...newSongs]
+  })
 }
 
 

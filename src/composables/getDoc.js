@@ -12,7 +12,6 @@ const getDoc = async (col, que, order = 'createdAt') => {
 
   const data = reactive([])
   const error = $ref(null)
-
   try {
     const q = query(collection(db, col), where(...que), orderBy(order));
 

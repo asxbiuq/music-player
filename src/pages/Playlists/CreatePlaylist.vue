@@ -10,6 +10,7 @@
         <button class="btn relative left-0 top-2" v-if="!isPending">Create</button>
         <button class="btn relative left-0 top-2" v-else disabled>Saving...</button>
     </form>
+    <loading v-if="isPending"></loading>
 </template>
 
 

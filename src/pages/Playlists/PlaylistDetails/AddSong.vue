@@ -5,8 +5,14 @@
             <label>Add a New Song</label>
             <input type="text" placeholder="Song title" required v-model="title">
             <input type="text" placeholder="Artist" required v-model="artist">
-            <button>Add</button>
+            <div class="container text-center">
+                <button  v-if="!isPending">Add</button>
+                <button  v-else disabled>Adding...</button>
+            </div>
         </form>
+
+        <loading v-if="isPending"></loading>
+
     </div>
 </template>
 
@@ -17,7 +23,7 @@ console.log('playlist:', playlist)
 const title = $ref('')
 const artist = $ref('')
 // const showForm = $ref(false)
-const { updateDoc } = useDocument()
+const { updateDoc, isPending } = useDocument()
 const router = useRouter()
 const handleSubmit = async () => {
     const newSong = {
@@ -41,4 +47,5 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped>
+
 </style>

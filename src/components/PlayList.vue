@@ -1,6 +1,6 @@
 <template>
-    <router-link :to="{ name: 'Playlists-PlaylistDetails-SongList', params: { id: id } }" class="flex justify-center ">
-      <div class="list-style border border-blue-300 shadow rounded-md p-4 max-w-6xl  flex gap-2 justify-between w-[90%] h-[15vh]  justify-content">
+    <router-link :to="{ name: routerLinkName, params: { id: id } }" class="flex justify-center ">
+      <div class="list-style border border-blue-300 shadow rounded-md p-4 max-w-6xl  flex gap-2 justify-between w-[90%] h-[12vh]  justify-content">
         <!-- image -->
         <div class="list-image  rounded-full bg-slate-200  overflow-hidden">
           <img :src="coverUrl" />
@@ -43,7 +43,7 @@ console.log(props.id)
   @apply  rounded-full bg-slate-200 h-[4rem] w-[4rem] overflow-hidden
 } */
 :root {
-  --img-r:calc(15vh - 2rem);
+  --img-r:calc(12vh - 2rem);
 }
 .list-image{
   height: var(--img-r);

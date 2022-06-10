@@ -42,12 +42,14 @@
         </div>
 
 
+        <loading v-if="isPending"></loading>
         <router-view class="right songlist-songadd" />
 
 
       </div>
 
     </div>
+
 
     <div v-else>
       <SkeletonPlayDetails />
@@ -79,7 +81,7 @@ const props = defineProps({
 
 console.log(props.id)
 
-const { error, deleteDoc, updateDoc, getDocData } = $(useDocument('playlists', props.id))//这里的id是playlistId
+const { error, deleteDoc, updateDoc, getDocData, isPending } = $(useDocument('playlists', props.id))//这里的id是playlistId
 const { deleteImage } = $(useStorage())
 
 const getPlaylist = (async () => {
@@ -97,6 +99,7 @@ const ownership = $computed(() => {
 })
 
 const handleDelete = async () => {
+  isPending = true
   console.log(playlist.filePath)
   await deleteImage(playlist.filePath)
   // 这里不用传参, 因为调用 useDocument() 时已经传参,并生成 docRef 对象了
@@ -181,7 +184,8 @@ provide('playlist', $$(playlist))
   .right {
     overflow: visible;
   }
-  img{
+
+  img {
     width: 100%;
     object-position: center;
   }

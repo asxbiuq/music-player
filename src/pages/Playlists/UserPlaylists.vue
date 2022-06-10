@@ -1,23 +1,18 @@
 <template>
     <div class="user-playlists w-full flex flex-col justify-between overflow-hidden h-full items-center gap-2">
-        
+
         <div v-if="showLists">
         </div>
         <!-- PLAYLIST -->
-        <div class="playlist-items flex flex-col gap-5 overflow-y-scroll overflow-x-hidden w-[90%] h-full">
+        <div class="playlist-items flex flex-col gap-8  overflow-hidden w-[90%] h-full">
             <!-- v-for 会循环产生与循环条件语句相同的盒子,所以子元素的大小在条件语句里设置 -->
             <div v-for=" showList in showLists" :key="showList.id"
-                class="playlist-item hover:scale-105 transition-all h-[15vh] overflow-visible top-2">
+                class="playlist-item hover:scale-105 transition-all h-[10vh] overflow-visible top-2">
 
-                <PlayList 
-                    :length="showList.length" 
-                    :id="showList.id" 
-                    :cover-url="showList.coverUrl" 
-                    :name="showList.name"
-                    :routerLinkName="'PlaylistDetails'" 
-                    :title="showList.title"
-                />
-                
+                <PlayList :length="showList.length" :id="showList.id" :cover-url="showList.coverUrl"
+                    :name="showList.name" :routerLinkName="'Playlists-PlaylistDetails-SongList'"
+                    :title="showList.title" />
+
 
             </div>
         </div>
@@ -33,7 +28,24 @@
             <Pagination @PagePre="handlePagePre" @PageNext="handlePageNext" class="overflow-visible" />
         </div>
 
+        <loading v-if="isPending"></loading>
+
     </div>
+
+
+
+      <!-- modal-component-Teleport -->
+    <!-- <confirm 
+    @confirm="confirm" 
+    @cancel="cancel" 
+    text="是否清空播放列表" 
+    confirmBtnText="清空" 
+    :isModelOpen="isModelOpen" 
+  /> -->
+  <!-- modal-control -->
+  <!-- <span class="clear" @click="handleModel">
+    <i class="icon-clear">click</i>  
+  </span> -->
 </template>
 
 
@@ -43,11 +55,11 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 
 
 const { user } = $(getUser())
-
+const { getDoc, isPending, error } = $(useDocument())
 // 这里要await,不然会报错 getDoc是一个用async声明的异步函数
-const { data: playlists, error } = $(await getDoc('playlists', ['userId', '==', user.uid]))
+const { data: playlists } = $(await getDoc('playlists', ['userId', '==', user.uid]))
 console.log('playlists', playlists)
-// console.log(data,error)
+console.log('error:',error)
 
 // 初始化页数，默认为1
 let pageIndex = $ref(1)
@@ -73,6 +85,7 @@ const handlePageNext = () => {
 const handlePagePre = () => {
     if (pageIndex <= 1) {
         console.log('The first page!')
+
         return
     } else {
         pageIndex--
