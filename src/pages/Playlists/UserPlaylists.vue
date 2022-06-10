@@ -34,18 +34,7 @@
 
 
 
-      <!-- modal-component-Teleport -->
-    <!-- <confirm 
-    @confirm="confirm" 
-    @cancel="cancel" 
-    text="是否清空播放列表" 
-    confirmBtnText="清空" 
-    :isModelOpen="isModelOpen" 
-  /> -->
-  <!-- modal-control -->
-  <!-- <span class="clear" @click="handleModel">
-    <i class="icon-clear">click</i>  
-  </span> -->
+
 </template>
 
 

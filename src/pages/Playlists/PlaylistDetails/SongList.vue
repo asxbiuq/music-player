@@ -18,21 +18,32 @@
             <td>{{ song.title }}</td>
             <th></th>
             <td>{{ song.artist }}</td>
-            <td @click="handleClick(song.id)" class="flex justify-center"><div class="btn-normal border-0">删除</div></td>
+            <td @click="confirmDelete(song.id)" class="flex justify-center"><div class="btn-normal border-0">删除</div></td>
           </tr>
         </tbody>
       </table>
 
-      <loading v-if="isPending"></loading>
+
+
 
     </div>
+    <confirm 
+      @confirm="handleDelete" 
+      @cancel="isModelOpen = !isModelOpen" 
+      text="是否删除该歌曲" 
+      confirmBtnText="确认" 
+      :isModelOpen="isModelOpen" 
+  />
+
+    <loading v-if="isPending"></loading>
+    
   </div>
 </template>
 
 <script setup>
-
+const confirmedSongId = $ref(null)
 const playlist = $(inject('playlist'))
-
+const isModelOpen = $ref(false)
 // const playlist = inject('playlist')
 
 // console.log('playlist: ', playlist.value)
@@ -40,11 +51,14 @@ const playlist = $(inject('playlist'))
 
 const { updateDoc, isPending } = useDocument()
 
-
-const handleClick = async (songId) => {
-
+const confirmDelete = (songId) => {
+  isModelOpen = true
+  confirmedSongId = songId
+}
+const handleDelete = async () => {
+  isModelOpen = false
   console.log('oldSongs', playlist.songs)
-  const newSongs = playlist.songs.filter(x => x.id !== songId)
+  const newSongs = playlist.songs.filter(x => x.id !== confirmedSongId)
   console.log('newSongs', newSongs)
   // 更新本地数据
   playlist.songs = [...newSongs]

@@ -4,17 +4,17 @@
 
     <transition name="confirm-fade">
 
-      <div class="confirm" v-show="isModelOpen">
-        <div class="confirm-wrapper">
-          <div class="confirm-content">
+      <div class="confirm " v-show="isModelOpen">
+        <div class="confirm-wrapper drop-shadow-xl">
+          <div class="confirm-content  overflow-hidden shadow-2xl border-2">
 
             <p class="text">{{ text }}</p>
 
             <div class="operate">
-              <div class="operate-btn left" @click="confirm">
+              <div class="operate-btn  hover:bg-stone-800 hover:text-white" @click="confirm">
                 {{ confirmBtnText }}
               </div>
-              <div class="operate-btn" @click="cancel">
+              <div class="operate-btn hover:bg-stone-800 hover:text-white" @click="cancel">
                 {{ cancelBtnText }}
               </div>
             </div>
@@ -54,8 +54,8 @@ const cancel = () => {
 </script>
 
 <style scoped lang="scss">
-$color-background-d: rgb(220, 227, 220);
-$color-highlight-background: rgb(172, 169, 164);
+$color-background-d: rgba(87, 88, 88, 0.244);
+$color-highlight-background: rgb(201, 199, 196);
 $font-size-large: 1rem;
 $color-text-l: 2rem;
 $color-text: black;
@@ -77,13 +77,13 @@ $color-text: black;
     }
   }
 
-  &.confirm-fade-leave-active {
-    animation: confirm-fadeout .3s;
+  // &.confirm-fade-leave-active {
+  //   animation: confirm-fadeout .3s;
 
-    .confirm-content {
-      animation: confirm-zoom-out .3s;
-    }
-  }
+  //   .confirm-content {
+  //     animation: confirm-zoom-out .3s;
+  //   }
+  // }
 
   .confirm-wrapper {
     position: absolute;

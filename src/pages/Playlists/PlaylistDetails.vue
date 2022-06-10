@@ -23,7 +23,7 @@
                   </div>
                   <div class="doubleBtn">
 
-                    <button class=" bg-red-500 btn" @click="handleDelete">Delete Playlist</button>
+                    <button class=" bg-red-500 btn" @click="confirmDelete">Delete Playlist</button>
 
 
                     <div v-if="!isAddSong">
@@ -56,6 +56,18 @@
     </div>
 
   </div>
+        <!-- modal-component-Teleport -->
+    <confirm 
+        @confirm="handleDelete" 
+        @cancel="isModelOpen = !isModelOpen" 
+        text="是否删除播放列表" 
+        confirmBtnText="确认" 
+        :isModelOpen="isModelOpen" 
+    />
+  <!-- modal-control -->
+  <!-- <span class="clear" @click="handleModel">
+    <i class="icon-clear">click</i>  
+  </span> -->
 </template>
 
 <route lang="yaml">
@@ -68,7 +80,7 @@
 
 <script setup>
 
-
+const isModelOpen = $ref(false)
 
 const isAddSong = $ref(false)
 
@@ -97,8 +109,11 @@ const router = useRouter()
 const ownership = $computed(() => {
   return playlist && user && user.uid == playlist.userId
 })
-
+const confirmDelete = () => {
+  isModelOpen = true
+}
 const handleDelete = async () => {
+  isModelOpen = false
   isPending = true
   console.log(playlist.filePath)
   await deleteImage(playlist.filePath)
