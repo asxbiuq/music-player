@@ -46,9 +46,7 @@ const handleClick = async (songId) => {
         songs: [...newSongs]
     })
 }
-onBeforeUpdate(() => {
-  let row = 1
-});
+
 
 </script>
 
