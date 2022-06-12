@@ -14,10 +14,10 @@
 
         <tbody v-for="(song, key) in playlist.songs" class="single-song " :key="song.id">
           <tr class="hover" @dblclick="getMusicURL(song.id)">
-            <th>{{ key + 1 }}</th>
-            <td>{{ song.title }}</td>
+            <th class="p">{{ key + 1 }}</th>
+            <td class="p">{{ song.title }}</td>
             <th></th>
-            <td>{{ song.artist }}</td>
+            <td class="p">{{ song.artist }}</td>
             <td @click="confirmDelete(song.id)" class="flex justify-center">
               <div class="btn-normal border-0">删除</div>
             </td>
@@ -56,6 +56,7 @@ const { updateDoc } = useDocument()
 // })
 
 const getMusicURL =  (songId) => {
+  audioIsPending = true
   curSongIndex = playlist.songs.findIndex(song => song.id === songId)
   url = playlist.songs[curSongIndex].musicUrl
   console.log('getMusicURL: ',url)
@@ -65,6 +66,7 @@ const canplay = () => {
   audioPlayer.value.play()
 }
 const next = () => {
+  audioIsPending = true
   curSongIndex ++
   if(curSongIndex >= playlist.songs.length){
     curSongIndex = 0

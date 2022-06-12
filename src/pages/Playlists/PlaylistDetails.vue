@@ -125,7 +125,7 @@ const handleAddSong = () => {
 }
 const handleSongList = () => {
   isAddSong = !isAddSong
-  router.push({ name: 'Playlists-PlaylistDetails-SongList' })
+  router.push({ name: 'Playlists-PlaylistDetails-id-SongList' })
 }
 
 provide('playlist', $$(playlist))
