@@ -5,7 +5,7 @@
 
     <div v-if="playlist">
 
-      <div class="playlistdetails-container">
+      <div class="playlistdetails-container max-h-[90vh]">
 
         <div class="playlist-info">
           <div class="left flex flex-col items-center ">
@@ -143,7 +143,7 @@ provide('playlist', $$(playlist))
     "left right right"
     /* ". . ."; */
 
-
+  
 }
 
 .left {

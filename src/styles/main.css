@@ -107,7 +107,7 @@ form input[type="file"] {
 
 /* error */
 .error {
-  color: var(--warning);
+  color: red;
   font-size: 14px;
   margin: 16px 0;
 }

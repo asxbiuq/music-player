@@ -32,7 +32,7 @@ const { updateDoc } = useDocument()
 const router = useRouter()
 
 // 允许上传的数据类型
-const types = ['audio/mpeg', 'audio/ogg']
+const types = ['audio/mpeg']
 
 const handleSelected = (e) => {
     selected = e.target.files[0]
@@ -42,7 +42,7 @@ const handleSelected = (e) => {
         fileError = null
     } else {
         file = null
-        fileError = 'Please select an image file (mp3 or ogg)'
+        fileError = 'Please select an audio file (mp3)'
     }
 }
 const handleSubmit = async () => {

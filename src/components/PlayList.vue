@@ -7,12 +7,11 @@
         </div>
         <!-- info -->
         <div class="list-info">
-          <h3><slot :title="title"></slot></h3>
-          <p>Created by <slot :name="name"></slot></p>
+          <h3>{{title}}</h3>
         </div>
         <!-- number -->
         <div class="list-number">
-          <p><slot :length="length"></slot></p>
+          <p>{{length}}</p>
         </div>
 
       </div>
@@ -23,8 +22,8 @@
 // 相关JS逻辑 配合defineProps接收父组件的传值
 
 
-const props = defineProps(['id','coverUrl','name','length','routerLinkName','title'])
-console.log(props.id)
+const props = defineProps(['id','coverUrl','length','routerLinkName','title'])
+console.log('props: ',props)
 
 // provide('playlist', props.id)
 

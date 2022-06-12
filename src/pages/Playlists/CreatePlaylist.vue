@@ -2,7 +2,7 @@
     <form @submit.prevent="handleSubmit" class="flex flex-col w-1/3 justify-center items-center self-center">
         <h4 class="text-black-600 text-2xl font-bold ">Create New Playlist</h4>
         <input class="w-full" type="text" required placeholder="Playlist title" v-model="title">
-        <textarea required placeholder="Playlist description..." v-model="description"></textarea>
+        <!-- <textarea required placeholder="Playlist description..." v-model="description"></textarea> -->
         <!-- upload playlist image -->
         <label>Upload playlist cover image</label>
         <input type="file" @change="handleChange">
@@ -26,7 +26,7 @@ const router = useRouter()
 // const uid = user.uid;
 const title = $ref('')
 // const playlistsName = $ref('')
-const description = $ref('')
+// const description = $ref('')
 const file = $ref(null)
 const fileError = $ref(null)
 const playlist = $ref('')
@@ -39,7 +39,7 @@ const handleSubmit = async () => {
         console.log(url)
         await addDoc({
             title: title,
-            description: description,
+            // description: description,
             userId: user.uid,
             userName: user.displayName,
             coverUrl: url,
