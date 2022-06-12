@@ -43,7 +43,7 @@
 
 
 
-        <router-view class="right songlist-songadd" @addedSong="isAddSong=!isAddSong"/>
+        <router-view class="right songlist-songadd" @addedSong="isAddSong = !isAddSong" />
 
 
       </div>
@@ -56,14 +56,9 @@
     </div>
 
   </div>
-        <!-- modal-component-Teleport -->
-    <confirm 
-        @confirm="handleDelete" 
-        @cancel="isModelOpen = !isModelOpen" 
-        text="是否删除播放列表" 
-        confirmBtnText="确认" 
-        :isModelOpen="isModelOpen" 
-    />
+  <!-- modal-component-Teleport -->
+  <confirm @confirm="handleDelete" @cancel="isModelOpen = !isModelOpen" text="是否删除播放列表" confirmBtnText="确认"
+    :isModelOpen="isModelOpen" />
 
 </template>
 
@@ -78,9 +73,7 @@
 <script setup>
 
 const isModelOpen = $ref(false)
-
 const isAddSong = $ref(false)
-
 let row = 1
 const playlist = $ref('')
 const { user } = $(getUser())
@@ -88,9 +81,10 @@ const props = defineProps({
   id: String,
 })
 
+
 console.log(props.id)
 
-const { error, deleteDoc, updateDoc, getDocData } = $(useDocument('playlists', props.id))//这里的id是playlistId
+const { error, deleteDoc, updateDoc, getDocData,isPending } = $(useDocument('playlists', props.id))//这里的id是playlistId
 const { deleteImage } = $(useStorage())
 
 const getPlaylist = (async () => {
@@ -116,6 +110,7 @@ const handleDelete = async () => {
   await deleteImage(playlist.filePath)
   // 这里不用传参, 因为调用 useDocument() 时已经传参,并生成 docRef 对象了
   await deleteDoc()
+  isPending = false
   router.push({ name: 'Playlists-UserPlaylists' })
 }
 
@@ -126,7 +121,7 @@ const handleClick = async (id) => {
 }
 const handleAddSong = () => {
   isAddSong = !isAddSong
-  router.push({ name: 'Playlists-PlaylistDetails-AddSong' })
+  router.push({ name: 'Playlists-PlaylistDetails-id-AddSong' })
 }
 const handleSongList = () => {
   isAddSong = !isAddSong

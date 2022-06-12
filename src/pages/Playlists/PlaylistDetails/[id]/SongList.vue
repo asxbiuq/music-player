@@ -73,7 +73,7 @@ const next = () => {
   console.log('play next, curSongIndex: ',curSongIndex)
 }
 
-watch(curSongIndex,()=>{
+watch($$(curSongIndex),()=>{
   console.log('curSongIndex: ',curSongIndex)
 })
 

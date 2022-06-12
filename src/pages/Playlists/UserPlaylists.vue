@@ -10,7 +10,7 @@
                 class="playlist-item hover:scale-105 transition-all h-[10vh] overflow-visible top-2">
 
                 <PlayList :length="showList.length" :id="showList.id" :cover-url="showList.coverUrl"
-                    :name="showList.name" :routerLinkName="'Playlists-PlaylistDetails-SongList'"
+                    :name="showList.name" :routerLinkName="'Playlists-PlaylistDetails-id-SongList'"
                     :title="showList.title" />
 
 

@@ -53,7 +53,7 @@ const handleSubmit = async () => {
     // 这里不需要清空表格里的数据,因为若是上传成功,页面则跳转,数据则被重置,若失败则保留输入信息
 
     emits('addedSong')
-    router.push({ name: 'Playlists-PlaylistDetails-SongList' })
+    router.push({ name: 'Playlists-PlaylistDetails-id-SongList' })
 }
 // 允许上传的数据类型
 const types = ['audio/mpeg', 'audio/ogg']
