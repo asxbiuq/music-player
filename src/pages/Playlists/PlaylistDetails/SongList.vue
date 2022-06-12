@@ -13,7 +13,7 @@
         </thead>
 
         <tbody v-for="(song, key) in playlist.songs" class="single-song " :key="song.id">
-          <tr class="hover" @dblclick="playMusic(song.id)">
+          <tr class="hover" @dblclick="getMusicURL(song.id)">
             <th>{{ key + 1 }}</th>
             <td>{{ song.title }}</td>
             <th></th>
@@ -29,15 +29,9 @@
 
     </div>
 
-    <audio 
-      ref="audioPlayer" 
-      :src="url" 
-      controls 
-      id="bgMusic" 
-      @canplay="canplay"
-      class="w-full"
-    ></audio>
-    
+    <audio ref="audioPlayer" :src="url" controls id="bgMusic" @canplay="canplay" class="w-full"
+      @ended="next"></audio>
+
     <confirm @confirm="handleDelete" @cancel="isModelOpen = !isModelOpen" text="是否删除该歌曲" confirmBtnText="确认"
       :isModelOpen="isModelOpen" />
 
@@ -53,27 +47,38 @@ const isModelOpen = $ref(false)
 const audioPlayer = ref()
 const url = $ref('')
 const audioIsPending = $ref(false)
+const curSongIndex = $ref(0)
+const { updateDoc } = useDocument()
 
 
-console.log('playlist: ', playlist.songs)
-console.log(audioPlayer)
+// watchEffect(()=>{
+//   console.log('curSongIndex: ',curSongIndex)
+// })
 
-const playMusic = (songId) => {
-  audioIsPending = true
-  audioPlayer.value.pause()
-  console.log(songId)
-  let songNeeded = playlist.songs.find(song => song.id === songId)
-  console.log(songNeeded)
-  url = songNeeded.musicUrl
-  console.log(url)
+const getMusicURL =  (songId) => {
+  curSongIndex = playlist.songs.findIndex(song => song.id === songId)
+  url = playlist.songs[curSongIndex].musicUrl
+  console.log('getMusicURL: ',url)
 }
-
 const canplay = () => {
   audioIsPending = false
   audioPlayer.value.play()
 }
+const next = () => {
+  curSongIndex ++
+  if(curSongIndex >= playlist.songs.length){
+    curSongIndex = 0
+  }
+  url = playlist.songs[curSongIndex].musicUrl
+  console.log('play next, curSongIndex: ',curSongIndex)
+}
 
-const { updateDoc } = useDocument()
+watch(curSongIndex,()=>{
+  console.log('curSongIndex: ',curSongIndex)
+})
+
+
+
 
 const confirmDelete = (songId) => {
   isModelOpen = true
@@ -91,6 +96,7 @@ const handleDelete = async () => {
     songs: [...newSongs]
   })
 }
+
 
 
 </script>
