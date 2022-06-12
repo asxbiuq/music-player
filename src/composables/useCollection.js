@@ -6,10 +6,11 @@ import getUser from './getUser';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { getDoc } from "firebase/firestore";
 
+let error = $ref(null)
+const isPending = $ref(false)
+
 const useCollection = (col) => {
   // 因为我们可能会使用多个集合,所以生成一个全局的error没有意义,需要每次都生成一个
-  let error = $ref(null)
-  const isPending = $ref(false)
 
   const addDoc = async (docData) => {
     error = null

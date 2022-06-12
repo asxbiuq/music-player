@@ -8,12 +8,11 @@
             <input type="file" @change="handleSelected">
             <div class="error">{{ fileError }}</div>
             <div class="container text-center">
-                <button  v-if="!isPending">Add</button>
-                <button  v-else disabled>Adding...</button>
+                <button v-if="!isPending">Add</button>
+                <button v-else disabled>Adding...</button>
             </div>
         </form>
 
-        <loading v-if="isPending"></loading>
 
     </div>
 </template>
@@ -22,26 +21,18 @@
 const file = $ref(null)
 const fileError = $ref(null)
 const playlist = $(inject('playlist'))
-
+const { isPending } = useIsPending()
 const emits = defineEmits(['addedSong'])
 
 console.log('playlist:', playlist)
 const title = $ref('')
 const artist = $ref('')
 // const showForm = $ref(false)
-const { uploadMusic, filePath, isPending : MusicPending } = $(useStorage())
-const { updateDoc, isPending : docPending } = useDocument()
+const { uploadMusic, filePath } = $(useStorage())
+const { updateDoc } = useDocument()
 const router = useRouter()
 
-const isPending = $computed(() => {
-    // isPending = uploadImagePending && addDocPending
-    if (MusicPending | docPending) {
-        return true
-    } else {
-        return false
-    }
 
-})
 
 const handleSubmit = async () => {
     const { url } = $(await uploadMusic(file))
@@ -82,5 +73,4 @@ const handleSelected = (e) => {
 </script>
 
 <style scoped>
-
 </style>

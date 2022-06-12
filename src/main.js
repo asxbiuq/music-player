@@ -5,6 +5,7 @@ import 'styles/main.css'
 import { auth } from '@/firebase/config'
 
 
+
 let app
 
 auth.onAuthStateChanged(() => {

@@ -42,7 +42,7 @@
         </div>
 
 
-        <loading v-if="isPending"></loading>
+
         <router-view class="right songlist-songadd" @addedSong="isAddSong=!isAddSong"/>
 
 
@@ -64,10 +64,7 @@
         confirmBtnText="确认" 
         :isModelOpen="isModelOpen" 
     />
-  <!-- modal-control -->
-  <!-- <span class="clear" @click="handleModel">
-    <i class="icon-clear">click</i>  
-  </span> -->
+
 </template>
 
 <route lang="yaml">
@@ -93,7 +90,7 @@ const props = defineProps({
 
 console.log(props.id)
 
-const { error, deleteDoc, updateDoc, getDocData, isPending } = $(useDocument('playlists', props.id))//这里的id是playlistId
+const { error, deleteDoc, updateDoc, getDocData } = $(useDocument('playlists', props.id))//这里的id是playlistId
 const { deleteImage } = $(useStorage())
 
 const getPlaylist = (async () => {

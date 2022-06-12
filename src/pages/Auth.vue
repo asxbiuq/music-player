@@ -9,3 +9,7 @@
   }
 }
 </route>
+
+<script setup>
+
+</script>

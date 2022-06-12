@@ -10,7 +10,6 @@
         <button class="btn relative left-0 top-2" v-if="!isPending">Create</button>
         <button class="btn relative left-0 top-2" v-else disabled>Saving...</button>
     </form>
-    <loading v-if="isPending"></loading>
 </template>
 
 
@@ -19,9 +18,9 @@
 import { Timestamp } from "firebase/firestore"
 
 
-
-const { uploadImage, filePath, isPending: uploadImagePending } = $(useStorage())
-const { error, addDoc, isPending: addDocPending } = $(useCollection('playlists'))
+const { isPending } = useIsPending()
+const { uploadImage, filePath, } = $(useStorage())
+const { error, addDoc } = $(useCollection('playlists'))
 const { user } = $(getUser())
 const router = useRouter()
 // const uid = user.uid;
@@ -31,15 +30,7 @@ const description = $ref('')
 const file = $ref(null)
 const fileError = $ref(null)
 const playlist = $ref('')
-const isPending = $computed(() => {
-    // isPending = uploadImagePending && addDocPending
-    if (uploadImagePending | addDocPending) {
-        return true
-    } else {
-        return false
-    }
 
-})
 
 
 const handleSubmit = async () => {

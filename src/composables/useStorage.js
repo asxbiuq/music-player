@@ -8,12 +8,12 @@ import { getStorage, ref as fireRef, deleteObject } from "firebase/storage";
 
 
 const { user } = $(getUser())
+const isPending = $ref(false)
+const error = $ref(null)
+// let url = $ref(null)
+const filePath = $ref(null)
 
 const useStorage = () => {
-    const error = $ref(null)
-    // let url = $ref(null)
-    const filePath = $ref(null)
-    const isPending = $ref(false)
 
     const uploadImage = async (file) => {
         isPending = true

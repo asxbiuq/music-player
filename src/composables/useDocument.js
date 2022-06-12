@@ -11,9 +11,9 @@ import { query, where, orderBy } from "firebase/firestore";
 import { getDocs } from "firebase/firestore";
 
 
+const error = $ref(null)
+const isPending = $ref(false)
 const useDocument = (col, docId) => {
-    const error = $ref(null)
-    const isPending = $ref(false)
 
     // 状态 与 行为 相分离
     let docRef = getDocRef(col, docId)

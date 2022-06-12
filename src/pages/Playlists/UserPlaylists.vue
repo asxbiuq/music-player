@@ -28,7 +28,6 @@
             <Pagination @PagePre="handlePagePre" @PageNext="handlePageNext" class="overflow-visible" />
         </div>
 
-        <loading v-if="isPending"></loading>
 
     </div>
 
@@ -44,7 +43,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 
 
 const { user } = $(getUser())
-const { getDoc, isPending, error } = $(useDocument())
+const { getDoc, error } = $(useDocument())
 // 这里要await,不然会报错 getDoc是一个用async声明的异步函数
 const { data: playlists } = $(await getDoc('playlists', ['userId', '==', user.uid]))
 console.log('playlists', playlists)

@@ -48,14 +48,12 @@
 
 <script setup>
 const playlist = $(inject('playlist'))
-var audio = document.getElementById("bgMusic");
-console.log(audio)
 const confirmedSongId = $ref(null)
 const isModelOpen = $ref(false)
 const audioPlayer = ref()
 const url = $ref('')
 const audioIsPending = $ref(false)
-// const playlist = inject('playlist')
+
 
 console.log('playlist: ', playlist.songs)
 console.log(audioPlayer)
@@ -75,7 +73,7 @@ const canplay = () => {
   audioPlayer.value.play()
 }
 
-const { updateDoc, isPending } = useDocument()
+const { updateDoc } = useDocument()
 
 const confirmDelete = (songId) => {
   isModelOpen = true
