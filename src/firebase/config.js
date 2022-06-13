@@ -5,12 +5,12 @@ import { getStorage } from "firebase/storage"
 import { Timestamp } from "firebase/firestore"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAfxiLj1tYScQcWeQNazne0cQb9Y9n0ECw",
-  authDomain: "my-project-3000-fbea1.firebaseapp.com",
-  projectId: "my-project-3000-fbea1",
-  storageBucket: "my-project-3000-fbea1.appspot.com",
-  messagingSenderId: "537083208389",
-  appId: "1:537083208389:web:e5ded69153d895e70546ac"
+  apiKey: "AIzaSyAUVPQw7GCL5o3U6TcwH9C0KHfF86VI9JM",
+  authDomain: "music-player-273f1.firebaseapp.com",
+  projectId: "music-player-273f1",
+  storageBucket: "music-player-273f1.appspot.com",
+  messagingSenderId: "477319477581",
+  appId: "1:477319477581:web:14bb66c2f1d94b780d9f04"
 };
 
 initializeApp(firebaseConfig)

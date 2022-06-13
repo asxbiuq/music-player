@@ -71,6 +71,9 @@ const next = () => {
   if(curSongIndex >= playlist.songs.length){
     curSongIndex = 0
   }
+  if (playlist.songs.length === 1) {
+    audioPlayer.value.play()
+  }
   url = playlist.songs[curSongIndex].musicUrl
   console.log('play next, curSongIndex: ',curSongIndex)
 }
