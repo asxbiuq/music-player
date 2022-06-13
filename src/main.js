@@ -4,7 +4,7 @@ import router from '@/router/index.js'
 import 'styles/main.css'
 import { auth } from '@/firebase/config'
 
-
+document.title='Music Player'
 
 let app
 
