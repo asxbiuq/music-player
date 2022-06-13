@@ -101,6 +101,9 @@ const useStorage = () => {
             error = err.message
         })
     }
+    watchEffect(() => {
+        console.log('error:', error)
+    })
 
     return $$({  filePath, error, isPending,uploadImage, deleteImage,  uploadMusic, deleteMusic })
 }

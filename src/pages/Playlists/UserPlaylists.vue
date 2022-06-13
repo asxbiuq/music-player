@@ -47,7 +47,7 @@ const { getDoc, error } = $(useDocument())
 // 这里要await,不然会报错 getDoc是一个用async声明的异步函数
 const { data: playlists } = $(await getDoc('playlists', ['userId', '==', user.uid]))
 console.log('playlists', playlists)
-console.log('error:',error)
+
 
 // 初始化页数，默认为1
 let pageIndex = $ref(1)

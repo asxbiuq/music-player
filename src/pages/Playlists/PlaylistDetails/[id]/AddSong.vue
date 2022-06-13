@@ -5,7 +5,7 @@
             <label>Add a New Song</label>
             <!-- <input type="text" placeholder="Song title" required v-model="title">
             <input type="text" placeholder="Artist" required v-model="artist"> -->
-            <input type="file" @change="handleSelected">
+            <input type="file" @change="handleSelected" required>
             <div class="error">{{ fileError }}</div>
             <div class="container text-center">
                 <button v-if="!isPending">Add</button>

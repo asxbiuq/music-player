@@ -103,7 +103,10 @@ const useDocument = (col, docId) => {
 
     // 追踪Snapshot状态和依赖,在其变更时关闭并重新运行,这样可以防止内存溢出
 
-
+    watchEffect(() => {
+        console.log('error:', error)
+    })
+    
     return $$({ error, isPending, deleteDoc, updateDoc, getDocData,getDoc })
 }
 
