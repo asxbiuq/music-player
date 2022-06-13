@@ -1,7 +1,7 @@
 <template>
   <teleport to="body" >
     <!-- 最外面的div起到遮罩作用 -->
-    <div class="absolute top-0 left-0 w-screen h-screen flex justify-center items-center">
+    <div class="absolute top-[30%] left-[40%] flex justify-center items-center">
 
       <div class="loadingio-spinner-bars-544xk61qn0j " >
         <div class="ldio-1ihc0eb0wqs">

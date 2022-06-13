@@ -8,6 +8,7 @@
 <script setup>
 // 导入全局 isPending
 const { isPending } = useIsPending()
+
 </script>
 
 <style>
