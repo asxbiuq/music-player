@@ -6,8 +6,7 @@
       <div class="hero-content  flex flex-row justify-center gap-5 content-center items-center w-screen">
 
         <div class="overflow-visible w-[30vw] flex justify-center">
-          <img src="src/assets/60a8528451475473.jfif"
-            class="record w-50  h-50 rounded-full  object-contain animate-spin overflow-none" />
+          <img src="@/assets/60a8528451475473.jfif" class="record w-50  h-50 rounded-full  object-contain animate-spin overflow-none" />
         </div>
 
         <div class="flex flex-col overflow-visible  ">
