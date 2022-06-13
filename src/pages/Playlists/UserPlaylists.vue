@@ -19,8 +19,7 @@
 
         <!-- createPlaylistBtn -->
         <div class="createPlaylistBtn overflow-visible">
-            <router-link :to="{ name: 'Playlists-CreatePlaylist' }" class="btn  bg-red-500">Create a new
-                Playlist</router-link>
+            <router-link :to="{ name: 'Playlists-CreatePlaylist' }" class="btn  bg-red-500">创建播放表</router-link>
         </div>
 
         <!-- 翻页按钮 -->

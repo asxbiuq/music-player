@@ -2,14 +2,14 @@
     <div class="add-song">
         <!-- <button v-if="!showForm" @click="showForm = true">Add Songs</button> -->
         <form @submit.prevent="handleSubmit">
-            <label>Add a New Song</label>
+            <label>添加歌曲</label>
             <!-- <input type="text" placeholder="Song title" required v-model="title">
             <input type="text" placeholder="Artist" required v-model="artist"> -->
             <input type="file" @change="handleSelected" required>
             <div class="error">{{ fileError }}</div>
             <div class="container text-center">
-                <button v-if="!isPending">Add</button>
-                <button v-else disabled>Adding...</button>
+                <button v-if="!isPending">添加</button>
+                <button v-else disabled>添加中....</button>
             </div>
         </form>
 

@@ -10,11 +10,10 @@
         </div>
 
         <div class="flex flex-col overflow-visible  ">
-          <h1 class="text-5xl font-bold overflow-visible p w-full ">Music-Posts</h1>
-          <p class="py-6  w-60 ">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
-            exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+          <h1 class="text-5xl font-bold overflow-visible p w-full ">音乐播放器</h1>
+          <p class="py-6  w-60 ">个人的音乐云仓库</p>
 
-          <button class="btn btn-primary" @click="handleClick">Get Started</button>
+          <button class="btn btn-primary" @click="handleClick">进入</button>
         </div>
 
       </div>

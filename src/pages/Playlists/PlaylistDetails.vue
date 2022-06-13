@@ -23,14 +23,14 @@
                   </div>
                   <div class="doubleBtn">
 
-                    <button class=" bg-red-500 btn" @click="confirmDelete">Delete Playlist</button>
+                    <button class=" bg-red-500 btn" @click="confirmDelete">删除播放列表</button>
 
 
                     <div v-if="!isAddSong">
-                      <button @click="handleAddSong" class="btn bg-red-500">Add Song</button>
+                      <button @click="handleAddSong" class="btn bg-red-500">添加歌曲</button>
                     </div>
                     <div v-else>
-                      <button @click="handleSongList" class="btn bg-red-500">Song List</button>
+                      <button @click="handleSongList" class="btn bg-red-500">歌曲列表</button>
                     </div>
 
                   </div>
@@ -57,8 +57,13 @@
 
   </div>
   <!-- modal-component-Teleport -->
-  <confirm @confirm="handleDelete" @cancel="isModelOpen = !isModelOpen" text="是否删除播放列表" confirmBtnText="确认"
-    :isModelOpen="isModelOpen" />
+  <confirm 
+    @confirm="handleDelete" 
+    @cancel="isModelOpen = !isModelOpen" 
+    text="是否删除播放列表" 
+    confirmBtnText="确认"
+    :isModelOpen="isModelOpen" 
+  />
 
 </template>
 

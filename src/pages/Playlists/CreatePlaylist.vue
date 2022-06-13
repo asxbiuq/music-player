@@ -7,8 +7,8 @@
         <label>Upload playlist cover image</label>
         <input type="file" @change="handleChange" required>
         <div class="error">{{ fileError }}</div>
-        <button class="btn relative left-0 top-2" v-if="!isPending">Create</button>
-        <button class="btn relative left-0 top-2" v-else disabled>Saving...</button>
+        <button class="btn relative left-0 top-2" v-if="!isPending">创建</button>
+        <button class="btn relative left-0 top-2" v-else disabled>保存中...</button>
     </form>
 </template>
 
