@@ -19,11 +19,10 @@ dist-ssr
 .DS_Store
 *.suo
 *.ntvs*
-*.njsproj
 *.sln
 *.sw?
 
-
+#firebase
 .firebase
-src/firebase/config.js
+*config.js
 firestore.rules
